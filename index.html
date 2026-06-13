@@ -652,7 +652,7 @@ function cardHtml(item, q) {
   const prev=item.prevPrice?`이전 ${(item.prevPrice/10000).toLocaleString()}만원`:'';
   const dlCls=item.daysLeft<=3?'soon':'';
   const dl=item.daysLeft===999?'—':item.daysLeft<=0?'마감':`D-${item.daysLeft}`;
-  const detailUrl=`https://www.onbid.co.kr/op/cltrpbancinf/cltrdtl/CltrDtlController/mvmnCltrDtl.do`;
+  const detailUrl=`https://www.onbid.co.kr/op/cltrpbancinf/cltrdtl/CltrDtlController/mvmnCltrDtl.do?cltrNo=${item.onbidCltrno||''}&pbancNo=${item.pbancNo||''}&pbctNo=${item.pbctNo||''}&pbctCdtnNo=${item.pbctCdtnNo||''}`;
   const titleHtml=q?hl(item.title,q):item.title;
   const discountRate=item.price&&item.minBidPrice&&item.price!==item.minBidPrice?Math.round((1-item.minBidPrice/item.price)*100):0;
   return `<div class="item-card ${cls}">
@@ -696,7 +696,7 @@ function hl(text,q){return text.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]
 async function openItemInfo(itemId, mode) {
   const item=itemIndex[itemId];
   if(!item)return;
-  const detailUrl=`https://www.onbid.co.kr/op/cltrpbancinf/cltrdtl/CltrDtlController/mvmnCltrDtl.do`;
+  const detailUrl=`https://www.onbid.co.kr/op/cltrpbancinf/cltrdtl/CltrDtlController/mvmnCltrDtl.do?cltrNo=${item.onbidCltrno||''}&pbancNo=${item.pbancNo||''}&pbctNo=${item.pbctNo||''}&pbctCdtnNo=${item.pbctCdtnNo||''}`;
   document.getElementById('infoModalBadges').innerHTML=`<span class="badge badge-type">${item.type}</span><span class="badge badge-org">${item.org.length>15?item.org.slice(0,15)+'…':item.org}</span>`;
   document.getElementById('infoModalTitle').textContent=item.title;
   document.getElementById('infoLoading').style.display='block';
