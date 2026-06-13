@@ -728,6 +728,13 @@ async function loadDetailInfo(item) {
       clearTimeout(timeout);
       const el=document.getElementById('infoRoadAddr');
       if(el) el.textContent=d?.roadAddr||'—';
+      // 좌표 기반 위성사진/로드뷰 버튼 업데이트
+      if(d?.lat && d?.lng) {
+        const satBtn=document.getElementById('btnSatellite');
+        const rvBtn=document.getElementById('btnRoadview');
+        if(satBtn) satBtn.onclick=()=>window.open(`https://map.kakao.com/?map_type=HYBRID&lat=${d.lat}&lng=${d.lng}&from=roughmap`,'_blank');
+        if(rvBtn) rvBtn.onclick=()=>window.open(`https://map.kakao.com/?map_type=ROADVIEW&lat=${d.lat}&lng=${d.lng}&from=roughmap`,'_blank');
+      }
       // 공시지가
       if(d?.jiga?.length) {
         const e=document.getElementById('infoPriceList');
@@ -777,9 +784,9 @@ async function loadDetailInfo(item) {
         <div style="font-size:13px;color:var(--text2);">${jibun.trim()}</div>
         <div style="display:flex;gap:8px;">
           <button onclick="window.open('https://map.naver.com/p/search/${enc}','_blank')" style="flex:1;background:rgba(3,199,90,.15);border:1px solid rgba(3,199,90,.3);color:#03c75a;border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🗺 네이버 지도</button>
-          <button onclick="window.open('https://map.kakao.com/?q=${enc}&map_type=HYBRID','_blank')" style="flex:1;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:var(--warn);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🛰 위성사진</button>
+          <button id="btnSatellite" onclick="window.open('https://map.kakao.com/?q=${enc}&map_type=HYBRID','_blank')" style="flex:1;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:var(--warn);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🛰 위성사진</button>
         </div>
-        <button onclick="window.open('https://map.kakao.com/?q=${enc}&map_type=ROADVIEW','_blank')" style="width:100%;background:rgba(139,147,176,.1);border:1px solid rgba(139,147,176,.25);color:var(--text2);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🚶 로드뷰</button>
+        <button id="btnRoadview" onclick="window.open('https://map.kakao.com/?q=${enc}&map_type=ROADVIEW','_blank')" style="width:100%;background:rgba(139,147,176,.1);border:1px solid rgba(139,147,176,.25);color:var(--text2);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🚶 로드뷰</button>
       </div>
     </div>
     <div style="margin:0 18px 12px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);overflow:hidden;">
