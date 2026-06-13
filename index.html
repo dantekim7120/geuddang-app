@@ -708,6 +708,7 @@ async function openItemInfo(itemId, mode) {
   try {
     await loadDetailInfo(item);
   } catch(e) {
+    console.error('loadDetailInfo error:', e);
     document.getElementById('infoLoadingText').textContent='정보를 가져오지 못했습니다';
   }
 }
