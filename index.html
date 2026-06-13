@@ -712,6 +712,8 @@ async function loadDetailInfo(item) {
   const urgency=item.daysLeft<=0?'⛔ 마감됨':item.daysLeft<=1?'🔴 오늘 마감! 즉시 확인하세요':item.daysLeft<=3?`🟡 D-${item.daysLeft} 서두르세요`:`🟢 D-${item.daysLeft} 여유 있음`;
   const rows=[
     ['긴박도', urgency],
+    ['지번 주소', item.jibun?item.jibun.trim():'—'],
+    ['도로명 주소', item.roadAddr||'조회 중...'],
     ['감정가', `<span style="color:var(--accent);font-weight:700;">${price}</span>`],
     ['최저입찰가', `<span style="color:var(--success);font-weight:700;">${minPrice}</span>${discountRate>0?` <span style="font-size:11px;color:var(--warn);">-${discountRate}%</span>`:''}`],
     ['입찰 마감', `<span style="${item.daysLeft<=3?'color:var(--danger)':'color:var(--text)'};font-weight:700;">${dl}</span>`],
