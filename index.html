@@ -747,7 +747,8 @@ async function loadDetailInfo(item) {
         </div>
       </div>
     </div>`;
-  document.getElementById('infoContent').appendChild(extra);
+  const summaryLabel = document.getElementById('infoSummaryLabel');
+  document.getElementById('infoContent').insertBefore(extra, summaryLabel);
   document.getElementById('infoSummaryLabel').textContent='⚠️ 유의사항';
   document.getElementById('infoSummaryText').textContent=typeGuide[item.type]||'공고 상세 페이지에서 조건을 직접 확인하세요.';
   let warning='';
