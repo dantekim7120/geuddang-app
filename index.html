@@ -780,11 +780,14 @@ async function loadDetailInfo(item) {
       clearTimeout(timeout);
       const el=document.getElementById('infoRoadAddr');
       if(el) el.textContent=d?.roadAddr||'—';
+      const satBtn=document.getElementById('btnSatellite');
+      const rvBtn=document.getElementById('btnRoadview');
       if(d?.lat && d?.lng) {
-        const satBtn=document.getElementById('btnSatellite');
-        const rvBtn=document.getElementById('btnRoadview');
         if(satBtn) satBtn.onclick=()=>window.open(`https://map.kakao.com/link/skyview/${d.lat},${d.lng}`,'_blank');
         if(rvBtn) rvBtn.onclick=()=>window.open(`https://map.kakao.com/link/roadview/${d.lat},${d.lng}`,'_blank');
+      } else {
+        const addr=encodeURIComponent((item.jibun||item.cltrNm||'').trim());
+        if(rvBtn) rvBtn.onclick=()=>window.open(`https://map.kakao.com/?q=${addr}&map_type=ROADVIEW`,'_blank');
       }
 
     })
@@ -1114,4 +1117,5 @@ window.addEventListener('load',()=>{setAutoInterval();fetchHomeData(false);});
 </script>
 </body>
 </html>
+
 
