@@ -463,18 +463,7 @@ function switchTab(tab) {
     ([q.sido,q.gugun,q.dong].filter(Boolean).join(' ')||'다른 지역 찾기');
 }
 
-// ══ 목데이터 (시뮬레이션) ════════════════════════════════
-function makeMock(loc) {
-  const b=new Date(), f=d=>{const x=new Date(b);x.setDate(x.getDate()+d);return x;};
-  const fmt=d=>`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
-  return [
-    {id:'m001',pbancNo:'',pbctCdtnNo:'',title:`${loc} 금곡리 산12-3 임야`,org:'기획재정부(국유재산)',price:8500000,minBidPrice:7000000,startDateStr:fmt(b),endDateStr:fmt(f(5)),endDate:f(5),daysLeft:5,area:'1240',jibun:'경북 안동시 길안면 금곡리 산12-3',prptDivNm:'임야',bidMthdNm:'공개경쟁',failCnt:0,type:'국유재산',isNew:true,changedAt:`${b.getMonth()+1}월 ${b.getDate()}일 ${String(b.getHours()).padStart(2,'0')}:${String(b.getMinutes()).padStart(2,'0')}:${String(b.getSeconds()).padStart(2,'0')}`},
-    {id:'m002',pbancNo:'',pbctCdtnNo:'',title:`${loc} 현하리 286 전`,org:'한국자산관리공사',price:12300000,minBidPrice:9840000,startDateStr:fmt(new Date(b-86400000*3)),endDateStr:fmt(f(12)),endDate:f(12),daysLeft:12,area:'826',jibun:'경북 안동시 길안면 현하리 286',prptDivNm:'전',bidMthdNm:'공개경쟁',failCnt:1,type:'압류재산',priceChanged:true,prevPrice:14000000,changedAt:`${b.getMonth()+1}월 ${b.getDate()}일 ${String(b.getHours()-1).padStart(2,'0')}:${String(b.getMinutes()).padStart(2,'0')}:22`},
-    {id:'m003',pbancNo:'',pbctCdtnNo:'',title:`${loc} 대사리 대지`,org:'농업진흥청',price:31000000,minBidPrice:24800000,startDateStr:fmt(new Date(b-86400000*5)),endDateStr:fmt(f(2)),endDate:f(2),daysLeft:2,area:'312',jibun:'경북 안동시 길안면 대사리 153',prptDivNm:'대',bidMthdNm:'공개경쟁',failCnt:0,type:'압류재산',deadlineSoon:true,changedAt:`${b.getMonth()+1}월 ${b.getDate()}일 ${String(b.getHours()).padStart(2,'0')}:${String(b.getMinutes()-5<0?b.getMinutes()+55:b.getMinutes()-5).padStart(2,'0')}:44`},
-    {id:'m004',pbancNo:'',pbctCdtnNo:'',title:`${loc} 만음리 창고 및 부지`,org:'한국자산관리공사',price:55000000,minBidPrice:44000000,startDateStr:fmt(new Date(b-86400000*2)),endDateStr:fmt(f(18)),endDate:f(18),daysLeft:18,area:'890',jibun:'경북 안동시 길안면 만음리 45',prptDivNm:'창고용지',bidMthdNm:'공개경쟁',failCnt:0,type:'수탁재산',changedAt:`${b.getMonth()+1}월 ${b.getDate()}일 ${String(b.getHours()).padStart(2,'0')}:${String(b.getMinutes()).padStart(2,'0')}:11`},
-    {id:'m005',pbancNo:'',pbctCdtnNo:'',title:`${loc} 고하리 국유지 임대`,org:'기획재정부(국유재산)',price:6200000,minBidPrice:6200000,startDateStr:fmt(new Date(b-86400000)),endDateStr:fmt(f(9)),endDate:f(9),daysLeft:9,area:'560',jibun:'경북 안동시 길안면 고하리 산8',prptDivNm:'임야',bidMthdNm:'공개경쟁',failCnt:0,type:'임대',changedAt:`${b.getMonth()+1}월 ${b.getDate()}일 ${String(b.getHours()).padStart(2,'0')}:${String(b.getMinutes()).padStart(2,'0')}:33`},
-  ];
-}
+
 
 function parseItemDate(s) {
   if (!s) return null;
@@ -498,7 +487,7 @@ async function fetchHomeData(silent=false, force=false) {
     if (!r.ok) throw new Error('서버 응답 오류');
     const j = await r.json();
     if (j.ok && j.items && j.items.length > 0) {
-      items = j.items;
+      items = j.items.filter(item => (item.jibun||'').includes('길안면') || (item.title||'').includes('길안면'));
       items.forEach(item => {
         if (item.endDateStr) item.endDate = parseItemDate(item.endDateStr);
         item.daysLeft = item.endDate ? Math.ceil((item.endDate - new Date()) / 86400000) : 999;
@@ -640,7 +629,7 @@ function cardHtml(item, q) {
   const prev=item.prevPrice?`이전 ${(item.prevPrice/10000).toLocaleString()}만원`:'';
   const dlCls=item.daysLeft<=3?'soon':'';
   const dl=item.daysLeft===999?'—':item.daysLeft<=0?'마감':`D-${item.daysLeft}`;
-  const detailUrl=`https://www.onbid.co.kr/op/cltrpbancinf/pbanc/pbancdtlinf/PbancDtlInqController/mvmnPbancDtl.do?onbidCltrno=${item.id}&onbidPbancNo=${item.pbancNo||''}`;
+  const detailUrl=`https://www.onbid.co.kr/op/cltrpbancinf/cltr/cltrcdtnsrch/CltrCdtnSrchController/mvmnCltrCdtnSrchClg.do`;
   const titleHtml=q?hl(item.title,q):item.title;
   const discountRate=item.price&&item.minBidPrice&&item.price!==item.minBidPrice?Math.round((1-item.minBidPrice/item.price)*100):0;
   return `<div class="item-card ${cls}">
@@ -665,7 +654,7 @@ function cardHtml(item, q) {
     </div>
   </div>
   <div class="item-footer">
-    <span class="item-date">${item.changedAt?`📅 ${item.changedAt}`:(item.id.startsWith('m')?'시뮬레이션':'공고 '+item.id)}</span>
+    <span class="item-date">${item.changedAt?`📅 ${item.changedAt}`:'공고 '+item.id}</span>
     <div class="footer-btns">
       <button class="item-link" onclick="openItemInfo('${item.id}','detail')">공고 보기 📋</button>
       <span class="footer-divider">|</span>
@@ -684,7 +673,7 @@ function hl(text,q){return text.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]
 async function openItemInfo(itemId, mode) {
   const item=itemIndex[itemId];
   if(!item)return;
-  const detailUrl=`https://www.onbid.co.kr/op/cltrpbancinf/pbanc/pbancdtlinf/PbancDtlInqController/mvmnPbancDtl.do?onbidCltrno=${item.id}&onbidPbancNo=${item.pbancNo||''}`;
+  const detailUrl=`https://www.onbid.co.kr/op/cltrpbancinf/cltr/cltrcdtnsrch/CltrCdtnSrchController/mvmnCltrCdtnSrchClg.do`;
 
   // 모달 초기화
   const isResult = mode==='result';
@@ -714,31 +703,35 @@ async function loadDetailInfo(item) {
   const discountRate=item.price&&item.minBidPrice&&item.price!==item.minBidPrice?Math.round((1-item.minBidPrice/item.price)*100):0;
   const urgency=item.daysLeft<=0?'⛔ 마감됨':item.daysLeft<=1?'🔴 오늘 마감! 즉시 확인하세요':item.daysLeft<=3?`🟡 D-${item.daysLeft} 서두르세요`:`🟢 D-${item.daysLeft} 여유 있음`;
 
-  // 온비드 API 상세 + 토지 통합 정보 병렬 조회
+  // 온비드 스크래핑 + 토지 통합 정보 병렬 조회
   const jibunAddr = item.jibun || item.title || '';
   const [onbidR, landR] = await Promise.allSettled([
-    SERVER_URL && item.pbctCdtnNo
-      ? fetch(`${SERVER_URL}/api/detail?cltrMngNo=${item.id}&pbctCdtnNo=${item.pbctCdtnNo}`).then(r=>r.ok?r.json():null).catch(()=>null)
+    item.onbidCltrno
+      ? fetch(`${SERVER_URL}/api/onbid-scrape?onbidCltrno=${item.onbidCltrno}&onbidPbancNo=${item.pbancNo||''}&pbctNo=${item.pbctNo||''}&pbctCdtnNo=${item.pbctCdtnNo||''}`).then(r=>r.ok?r.json():null).catch(()=>null)
       : Promise.resolve(null),
-    SERVER_URL && jibunAddr
-      ? fetch(`${SERVER_URL}/api/landinfo?addr=${encodeURIComponent(jibunAddr)}&pnu=${item.pnu||''}`).then(r=>r.ok?r.json():null).catch(()=>null)
-      : Promise.resolve(null)
+    jibunAddr ? fetchLandInfoDirect(jibunAddr, item.pnu||'') : Promise.resolve(null)
   ]);
 
-  const apiData = onbidR.status==='fulfilled' ? (onbidR.value?.response?.body?.items?.item || null) : null;
+  const scrapeData = onbidR.status==='fulfilled' ? onbidR.value : null;
   const L = landR.status==='fulfilled' ? landR.value : null;
-  if(Array.isArray(apiData)) apiData = apiData[0];
 
-  const jibun = apiData?.rdnmAdr||apiData?.jibunAdr||item.jibun||'—';
+  const jibun = scrapeData?.title || item.jibun || '—';
   const roadAddr = L?.roadAddr || '—';
-  const area = L?.land?.area || apiData?.totArea || item.area || '—';
+  const area = L?.land?.area || item.area || '—';
   const jimok = L?.land?.jimok || item.prptDivNm || '—';
   const ownership = L?.land?.ownership || '—';
   const ownerCount = L?.land?.ownerCount || '—';
   const useArea = L?.landuse?.useArea || '—';
   const useDetail = L?.landuse?.useDetail || '';
-  const bidMethod = apiData?.bidMthdNm || item.bidMthdNm || '공개경쟁입찰';
+  const bidMethod = item.bidMthdNm || '공개경쟁입찰';
   const failNote = item.failCnt>0?`${item.failCnt}회 유찰 — 경쟁 낮을 수 있음`:'최초 입찰';
+  
+  // 스크래핑 데이터로 가격/날짜 보완
+  const scrapedPrice = scrapeData?.apslEvlAmt ? parseInt(scrapeData.apslEvlAmt.replace(/,/g,'')) : null;
+  const scrapedMinPrice = scrapeData?.lowstBidPrc ? parseInt(scrapeData.lowstBidPrc.replace(/,/g,'')) : null;
+  const scrapedBidStatus = scrapeData?.bidStatus || '';
+  const scrapedBidBgng = scrapeData?.bidBgng || '';
+  const scrapedBidEnd = scrapeData?.bidEnd || '';
 
   // 공시지가 최근 3개년
   let priceRows = '';
@@ -746,16 +739,21 @@ async function loadDetailInfo(item) {
     priceRows = L.price.map(p=>`${p.year}년: ㎡당 ${Number(p.price).toLocaleString()}원`).join(' / ');
   }
 
-  // 메타 정보
+  // 메타 정보 - 스크래핑 데이터 우선 사용
+  const displayPrice = scrapedPrice ? `${(scrapedPrice/10000).toLocaleString()}만원` : price;
+  const displayMinPrice = scrapedMinPrice ? `${(scrapedMinPrice/10000).toLocaleString()}만원` : minPrice;
+  const displayBidPeriod = scrapedBidBgng && scrapedBidEnd ? `${scrapedBidBgng} ~ ${scrapedBidEnd}` : dl;
+  const displayStatus = scrapedBidStatus || (item.daysLeft<=0?'마감':item.daysLeft===999?'—':`D-${item.daysLeft}`);
+
   const rows=[
-    ['긴박도', urgency],
-    ['감정가', `<span style="color:var(--accent);font-weight:700;">${price}</span>`],
-    ['최저입찰가', `<span style="color:var(--success);font-weight:700;">${minPrice}</span>${discountRate>0?` <span style="font-size:11px;color:var(--warn);">감정가 대비 ${discountRate}% 낮음</span>`:''}` ],
-    ['입찰 마감', `<span style="${item.daysLeft<=3?'color:var(--danger)':'color:var(--text)'};font-weight:700;">${dl}</span>`],
+    ['입찰 상태', `<span style="font-weight:700;">${displayStatus}</span>`],
+    ['감정가', `<span style="color:var(--accent);font-weight:700;">${displayPrice}</span>`],
+    ['최저입찰가', `<span style="color:var(--success);font-weight:700;">${displayMinPrice}</span>${discountRate>0?` <span style="font-size:11px;color:var(--warn);">감정가 대비 ${discountRate}% 낮음</span>`:''}` ],
+    ['입찰 기간', `<span style="font-weight:700;">${displayBidPeriod}</span>`],
     ['입찰 방식', bidMethod],
     ['유찰 현황', failNote],
   ];
-  if(item.priceChanged&&item.prevPrice){const diff=Math.round((item.price-item.prevPrice)/item.prevPrice*100);rows.splice(2,0,['가격 변동',`<span style="color:var(--warn);">${(item.prevPrice/10000).toLocaleString()}만 → ${price} (${diff>0?'+':''}${diff}%)</span>`]);}
+  if(item.priceChanged&&item.prevPrice){const diff=Math.round((item.price-item.prevPrice)/item.prevPrice*100);rows.splice(2,0,['가격 변동',`<span style="color:var(--warn);">${(item.prevPrice/10000).toLocaleString()}만 → ${displayPrice} (${diff>0?'+':''}${diff}%)</span>`]);}
 
   // 토지대장/임야대장 섹션
   const landSection = `
@@ -806,9 +804,9 @@ async function loadDetailInfo(item) {
         </div>
         <div style="display:flex;gap:8px;">
           <button onclick="window.open('https://map.naver.com/p/search/${encodeURIComponent(jibun)}?c=15,0,0,0,dh','_blank')" style="flex:1;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:var(--warn);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🛰 위성사진</button>
-          <button onclick="window.open('https://map.vworld.kr/map/vworldmap.do','_blank')" style="flex:1;background:rgba(79,127,255,.1);border:1px solid rgba(79,127,255,.25);color:var(--accent);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">📋 토지이용계획</button>
+          <button onclick="window.open('https://luris.go.kr/web/ajaxIndex.do','_blank')" style="flex:1;background:rgba(79,127,255,.1);border:1px solid rgba(79,127,255,.25);color:var(--accent);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">📋 토지이용계획</button>
         </div>
-        <button onclick="window.open('https://map.naver.com/p/search/${encodeURIComponent(jibun)}?c=15,0,0,0,dh&mode=streetview','_blank')" style="width:100%;background:rgba(139,147,176,.1);border:1px solid rgba(139,147,176,.25);color:var(--text2);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🚶 거리뷰</button>
+        <button onclick="window.open('https://map.naver.com/p/search/'+encodeURIComponent(roadAddr!=='—'?roadAddr:jibun)+'?c=15,0,0,0,dh&mode=streetview','_blank')" style="width:100%;background:rgba(139,147,176,.1);border:1px solid rgba(139,147,176,.25);color:var(--text2);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🚶 거리뷰</button>
       </div>
     </div>` : '';
 
@@ -902,6 +900,62 @@ function closeInfoModal(e) {
     document.getElementById('infoModal').style.display='none';
     document.body.style.overflow='';
   }
+}
+
+
+// ══ VWORLD 직접 호출 ══════════════════════════════════
+async function fetchLandInfoDirect(addr, pnu) {
+  const KEY1 = VWORLD_KEY;
+  const KEY2 = '2AD4FAC3-DFCC-3907-877C-9DC542786C1A';
+  const VWORLD_NED = 'https://api.vworld.kr/ned/data';
+  let resolvedPnu = pnu;
+  let roadAddr = '';
+
+  try {
+    const r = await fetch(`https://api.vworld.kr/req/address?service=address&request=getcoord&crs=epsg:4326&address=${encodeURIComponent(addr)}&format=json&type=PARCEL&key=${KEY1}`);
+    const d = await r.json();
+    if (d?.response?.status === 'OK') {
+      if (!resolvedPnu) resolvedPnu = d.response.refined?.structure?.level4LC || '';
+    }
+  } catch(e) {}
+
+  try {
+    const r = await fetch(`https://api.vworld.kr/req/address?service=address&request=getcoord&crs=epsg:4326&address=${encodeURIComponent(addr)}&format=json&type=ROAD&key=${KEY1}`);
+    const d = await r.json();
+    if (d?.response?.status === 'OK') roadAddr = d.response.refined?.text || '';
+  } catch(e) {}
+
+  const result = { pnu: resolvedPnu, roadAddr, land: null, price: null, landuse: null };
+
+  if (resolvedPnu) {
+    const [landR, priceR, landuseR] = await Promise.allSettled([
+      fetch(`${VWORLD_NED}/ladfrlList?key=${KEY2}&pnu=${resolvedPnu}&format=json&numOfRows=1`),
+      fetch(`${VWORLD_NED}/indvdLandPriceAttr?key=${KEY1}&pnu=${resolvedPnu}&format=json&numOfRows=3`),
+      fetch(`${VWORLD_NED}/prsctrAttr?key=${KEY1}&pnu=${resolvedPnu}&format=json`)
+    ]);
+    if (landR.status === 'fulfilled') {
+      try {
+        const d = await landR.value.json();
+        const f = d?.result?.featureCollection?.features?.[0]?.properties;
+        if (f) result.land = { area: f.lndpclAr, jimok: f.lndcgrCodeNm, ownership: f.posesnSeCodeNm, ownerCount: f.cnrsPsnCo };
+      } catch(e) {}
+    }
+    if (priceR.status === 'fulfilled') {
+      try {
+        const d = await priceR.value.json();
+        const feats = d?.result?.featureCollection?.features;
+        if (feats?.length) result.price = feats.map(f => ({ year: f.properties?.stdrYear, month: f.properties?.stdrMt, price: f.properties?.pblntfPclnd })).filter(p => p.price).slice(0, 3);
+      } catch(e) {}
+    }
+    if (landuseR.status === 'fulfilled') {
+      try {
+        const d = await landuseR.value.json();
+        const f = d?.result?.featureCollection?.features?.[0]?.properties;
+        if (f) result.landuse = { useArea: f.prsctrNm, useDetail: f.prsctrNm2 || '' };
+      } catch(e) {}
+    }
+  }
+  return result;
 }
 
 // ══ 토지 정보 조회 ════════════════════════════════════════
