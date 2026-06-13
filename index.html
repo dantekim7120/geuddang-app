@@ -755,9 +755,9 @@ async function loadDetailInfo(item) {
         <div style="font-size:13px;color:var(--text2);">${jibun.trim()}</div>
         <div style="display:flex;gap:8px;">
           <button id="btnNaver" onclick="window.open('https://map.naver.com/p/search/${enc}','_blank')" style="flex:1;background:rgba(3,199,90,.15);border:1px solid rgba(3,199,90,.3);color:#03c75a;border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🗺 네이버 지도</button>
-          <button id="btnSatellite" disabled style="flex:1;background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.15);color:rgba(245,158,11,.4);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:not-allowed;font-family:inherit;">🛰 위성사진</button>
+          <button id="btnSatellite" onclick="window.open('https://map.kakao.com/?q=${enc}','_blank')" style="flex:1;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:var(--warn);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🛰 위성사진</button>
         </div>
-        <button id="btnRoadview" disabled style="width:100%;background:rgba(139,147,176,.05);border:1px solid rgba(139,147,176,.15);color:rgba(139,147,176,.4);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:not-allowed;font-family:inherit;">🚶 로드뷰 (좌표 조회 중…)</button>
+        <button id="btnRoadview" onclick="window.open('https://map.kakao.com/?q=${enc}','_blank')" style="width:100%;background:rgba(139,147,176,.1);border:1px solid rgba(139,147,176,.25);color:var(--text2);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🚶 로드뷰</button>
       </div>
     </div>
     <div style="margin:0 18px 12px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);overflow:hidden;">
@@ -776,14 +776,11 @@ async function loadDetailInfo(item) {
       clearTimeout(timeout);
       const el=document.getElementById('infoRoadAddr');
       if(el) el.textContent=d?.roadAddr||'—';
-      const satBtn=document.getElementById('btnSatellite');
-      const rvBtn=document.getElementById('btnRoadview');
       if(d?.lat && d?.lng) {
-        if(satBtn){satBtn.removeAttribute('disabled');satBtn.style.cssText='flex:1;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:var(--warn);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;';satBtn.onclick=()=>window.open(`https://map.kakao.com/link/skyview/${d.lng},${d.lat}`,'_blank');}
-        if(rvBtn){rvBtn.removeAttribute('disabled');rvBtn.style.cssText='width:100%;background:rgba(139,147,176,.1);border:1px solid rgba(139,147,176,.25);color:var(--text2);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;';rvBtn.textContent='🚶 로드뷰';rvBtn.onclick=()=>window.open(`https://map.kakao.com/link/roadview/${d.lng},${d.lat}`,'_blank');}
-      } else {
-        if(satBtn){satBtn.removeAttribute('disabled');satBtn.style.cssText='flex:1;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:var(--warn);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;';satBtn.onclick=()=>window.open(`https://map.naver.com/p/search/${enc}&map_type=satellite`,'_blank');}
-        if(rvBtn){rvBtn.removeAttribute('disabled');rvBtn.style.cssText='width:100%;background:rgba(139,147,176,.1);border:1px solid rgba(139,147,176,.25);color:var(--text2);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;';rvBtn.textContent='🚶 거리뷰(네이버)';rvBtn.onclick=()=>window.open(`https://map.naver.com/p/search/${enc}`,'_blank');}
+        const satBtn=document.getElementById('btnSatellite');
+        const rvBtn=document.getElementById('btnRoadview');
+        if(satBtn) satBtn.onclick=()=>window.open(`https://map.kakao.com/link/skyview/${d.lat},${d.lng}`,'_blank');
+        if(rvBtn) rvBtn.onclick=()=>window.open(`https://map.kakao.com/link/roadview/${d.lat},${d.lng}`,'_blank');
       }
 
     })
@@ -806,7 +803,7 @@ async function loadDetailInfo(item) {
       if (html.includes('Code:4017') || html.includes('검색이 안되는 필지') || html.includes('시스템 에러 안내')) {
         container.innerHTML = `<div style="text-align:center;color:var(--text2);font-size:13px;padding:8px 0;">이 필지는 토지이음 미등록 지역입니다.</div>`;
       } else {
-        container.innerHTML = `<div style="display:flex;gap:8px;margin-bottom:8px;"><button onclick="openEumViewer('${eumUrl.replace(/landGbn=./,'landGbn=1')}','1')" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(124,92,252,.3);background:${'1'===landGbn?'rgba(124,92,252,.25)':'rgba(124,92,252,.08)'};color:var(--accent2);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">🌾 일반</button><button onclick="openEumViewer('${eumUrl.replace(/landGbn=./,'landGbn=2')}','2')" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(124,92,252,.3);background:${'2'===landGbn?'rgba(124,92,252,.25)':'rgba(124,92,252,.08)'};color:var(--accent2);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">🌲 산</button></div><button onclick="openEumViewer('${eumUrl}','${landGbn}')" style="width:100%;background:rgba(124,92,252,.15);border:1px solid rgba(124,92,252,.3);color:var(--accent2);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">📋 토지이용계획 전체보기</button>`;
+        container.innerHTML = `<button onclick="openEumViewer('${eumUrl}','${landGbn}')" style="width:100%;background:rgba(124,92,252,.15);border:1px solid rgba(124,92,252,.3);color:var(--accent2);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">📋 토지이용계획 전체보기</button>`;
       }
     }).catch(() => {
       const container = document.getElementById(containerId);
@@ -1111,4 +1108,3 @@ window.addEventListener('load',()=>{setAutoInterval();fetchHomeData(false);});
 </script>
 </body>
 </html>
-
