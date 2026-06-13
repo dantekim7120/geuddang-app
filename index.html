@@ -247,10 +247,6 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
   <div style="display:flex;align-items:center;padding:10px 14px;background:var(--surface);border-bottom:1px solid var(--border);gap:10px;">
     <button onclick="closeEumViewer()" style="background:rgba(124,92,252,.15);border:1px solid rgba(124,92,252,.3);color:var(--accent2);border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">← 돌아가기</button>
     <span style="font-size:13px;font-weight:700;color:var(--accent2);">🗺 토지이용계획 (토지이음)</span>
-    <div style="margin-left:auto;display:flex;gap:6px;">
-      <button id="eumTabGeneral" onclick="switchEumLandGbn('1')" style="padding:5px 12px;border-radius:7px;border:1px solid rgba(124,92,252,.4);background:rgba(124,92,252,.25);color:var(--accent2);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">🌾 일반</button>
-      <button id="eumTabMtn" onclick="switchEumLandGbn('2')" style="padding:5px 12px;border-radius:7px;border:1px solid rgba(124,92,252,.2);background:transparent;color:var(--text2);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">🌲 산</button>
-    </div>
   </div>
   <iframe id="eumViewerFrame" src="" style="flex:1;width:100%;border:none;" loading="lazy"></iframe>
 </div>
@@ -780,15 +776,9 @@ async function loadDetailInfo(item) {
       clearTimeout(timeout);
       const el=document.getElementById('infoRoadAddr');
       if(el) el.textContent=d?.roadAddr||'—';
-      console.log('[landinfo 응답]', JSON.stringify(d));
-      const satBtn=document.getElementById('btnSatellite');
-      const rvBtn=document.getElementById('btnRoadview');
       if(d?.lat && d?.lng) {
-        if(satBtn) satBtn.onclick=()=>window.open(`https://map.kakao.com/link/skyview/${d.lat},${d.lng}`,'_blank');
+        const rvBtn=document.getElementById('btnRoadview');
         if(rvBtn) rvBtn.onclick=()=>window.open(`https://map.kakao.com/link/roadview/${d.lat},${d.lng}`,'_blank');
-      } else {
-        const addr=encodeURIComponent((item.jibun||item.cltrNm||'').trim());
-        if(rvBtn) rvBtn.onclick=()=>window.open(`https://map.kakao.com/?q=${addr}&map_type=ROADVIEW`,'_blank');
       }
 
     })
@@ -833,33 +823,31 @@ async function loadDetailInfo(item) {
   document.getElementById('infoContent').style.display='block';
 }
 
-let _eumBaseUrl = '';
 function openEumViewer(url, landGbn) {
-  _eumBaseUrl = url;
   const viewer = document.getElementById('eumViewer');
   const frame = document.getElementById('eumViewerFrame');
   if (!viewer || !frame) return;
   frame.src = url;
   viewer.style.display = 'flex';
   document.body.style.overflow = 'hidden';
-  // 탭 상태 반영
-  const isGeneral = (landGbn !== '2');
-  document.getElementById('eumTabGeneral').style.background = isGeneral ? 'rgba(124,92,252,.25)' : 'transparent';
-  document.getElementById('eumTabGeneral').style.color = isGeneral ? 'var(--accent2)' : 'var(--text2)';
-  document.getElementById('eumTabMtn').style.background = !isGeneral ? 'rgba(124,92,252,.25)' : 'transparent';
-  document.getElementById('eumTabMtn').style.color = !isGeneral ? 'var(--accent2)' : 'var(--text2)';
-}
-function switchEumLandGbn(gbn) {
-  if (!_eumBaseUrl) return;
-  const newUrl = _eumBaseUrl.replace(/landGbn=\d/, 'landGbn=' + gbn);
-  const frame = document.getElementById('eumViewerFrame');
-  if (frame) frame.src = newUrl;
-  _eumBaseUrl = newUrl;
-  const isGeneral = (gbn !== '2');
-  document.getElementById('eumTabGeneral').style.background = isGeneral ? 'rgba(124,92,252,.25)' : 'transparent';
-  document.getElementById('eumTabGeneral').style.color = isGeneral ? 'var(--accent2)' : 'var(--text2)';
-  document.getElementById('eumTabMtn').style.background = !isGeneral ? 'rgba(124,92,252,.25)' : 'transparent';
-  document.getElementById('eumTabMtn').style.color = !isGeneral ? 'var(--accent2)' : 'var(--text2)';
+  frame.onload = function() {
+    try {
+      const doc = frame.contentDocument || frame.contentWindow.document;
+      // 산/일반 드롭다운 선택
+      const landGbnSelect = doc.querySelector('select[name="landGbn"]') || doc.querySelector('#landGbn');
+      if (landGbnSelect) {
+        landGbnSelect.value = landGbn || '1';
+        landGbnSelect.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      // 열람 버튼 클릭
+      setTimeout(() => {
+        try {
+          const searchBtn = doc.querySelector('button.btn-search') || doc.querySelector('input[type="button"]') || doc.querySelector('.btn-srch') || doc.querySelector('button[onclick*="search"]');
+          if (searchBtn) searchBtn.click();
+        } catch(e) {}
+      }, 500);
+    } catch(e) {}
+  };
 }
 function closeEumViewer() {
   const viewer = document.getElementById('eumViewer');
@@ -1118,7 +1106,3 @@ window.addEventListener('load',()=>{setAutoInterval();fetchHomeData(false);});
 </script>
 </body>
 </html>
-
-
-
-
