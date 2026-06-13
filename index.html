@@ -720,19 +720,19 @@ async function loadDetailInfo(item) {
       clearTimeout(timeout);
       const el=document.getElementById('infoRoadAddr');
       if(el) el.textContent=d?.roadAddr||'—';
-      // 토지대장
-      if(d?.jimok) { const e=document.getElementById('infoJimok'); if(e) e.textContent=d.jimok; }
-      if(d?.area) { const e=document.getElementById('infoArea'); if(e) e.textContent=d.area+'㎡'; }
-      if(d?.ownership) { const e=document.getElementById('infoOwnership'); if(e) e.textContent=d.ownership; }
       // 공시지가
-      if(d?.price?.length) {
+      if(d?.jiga?.length) {
         const e=document.getElementById('infoPriceList');
-        if(e) e.textContent=d.price.map(p=>`${p.year}년 ㎡당 ${Number(p.price).toLocaleString()}원`).join(' / ');
+        if(e) e.textContent=d.jiga.map(p=>`${p.year}년 ${p.baseMon}월 ㎡당 ${Number(p.jiga).toLocaleString()}원`).join(' / ');
+      } else {
+        const e=document.getElementById('infoPriceList'); if(e) e.textContent='—';
       }
-      // 토지이용계획
-      if(d?.landuse) {
+      // 토지이용
+      if(d?.landuse?.useArea) {
         const e=document.getElementById('infoLanduse');
-        if(e) e.textContent=(d.landuse.useArea||'—')+(d.landuse.useDetail?` / ${d.landuse.useDetail}`:'');
+        if(e) e.textContent=d.landuse.useArea;
+      } else {
+        const e=document.getElementById('infoLanduse'); if(e) e.textContent='—';
       }
     })
     .catch(()=>{ clearTimeout(timeout); const el=document.getElementById('infoRoadAddr'); if(el)el.textContent='—'; });
@@ -741,9 +741,7 @@ async function loadDetailInfo(item) {
     ['남은 일정', urgency],
     ['지번 주소', item.jibun?item.jibun.trim():'—'],
     ['도로명 주소', `<span id="infoRoadAddr">${roadAddr}</span>`],
-    ['지목', `<span id="infoJimok">조회 중...</span>`],
-    ['면적', `<span id="infoArea">${item.area?Number(item.area).toFixed(1)+'㎡':'조회 중...'}</span>`],
-    ['소유 구분', `<span id="infoOwnership">조회 중...</span>`],
+    ['면적', `${item.area?Number(item.area).toFixed(1)+'㎡':'—'}`],
     ['공시지가', `<span id="infoPriceList">조회 중...</span>`],
     ['토지이용', `<span id="infoLanduse">조회 중...</span>`],
     ['감정가', `<span style="color:var(--accent);font-weight:700;">${price}</span>`],
