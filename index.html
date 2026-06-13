@@ -726,6 +726,28 @@ async function loadDetailInfo(item) {
     '임대':'소유권 이전 없이 임대 방식입니다. 임대 기간과 조건을 공고문에서 꼭 확인하세요.',
   };
   document.getElementById('infoMeta').innerHTML=rows.map(([k,v])=>`<div class="summary-item"><span class="summary-key">${k}</span><span class="summary-val">${v}</span></div>`).join('');
+  // 지도 버튼 섹션
+  const jibun = item.jibun||item.title||'';
+  const extraEl = document.getElementById('infoExtra');
+  if(extraEl) extraEl.remove();
+  const extra = document.createElement('div');
+  extra.id='infoExtra';
+  extra.innerHTML=`
+    <div style="margin:0 18px 12px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);overflow:hidden;">
+      <div style="padding:10px 14px;background:rgba(3,199,90,.08);border-bottom:1px solid var(--border);font-size:12px;font-weight:700;color:#03c75a;letter-spacing:.04em;">📍 위치</div>
+      <div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:13px;color:var(--text2);">${jibun.trim()}</div>
+        <div style="display:flex;gap:8px;">
+          <button onclick="window.open('https://map.naver.com/p/search/${encodeURIComponent(jibun.trim())}','_blank')" style="flex:1;background:rgba(3,199,90,.15);border:1px solid rgba(3,199,90,.3);color:#03c75a;border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🗺 네이버 지도</button>
+          <button onclick="window.open('https://map.naver.com/p/search/${encodeURIComponent(jibun.trim())}?c=15,0,0,0,dh','_blank')" style="flex:1;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:var(--warn);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🛰 위성사진</button>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button onclick="window.open('https://map.vworld.kr/map/vworldmap.do','_blank')" style="flex:1;background:rgba(79,127,255,.1);border:1px solid rgba(79,127,255,.25);color:var(--accent);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">📋 토지이용계획</button>
+          <button onclick="window.open('https://map.naver.com/p/search/${encodeURIComponent(jibun.trim())}?mode=streetview','_blank')" style="flex:1;background:rgba(139,147,176,.1);border:1px solid rgba(139,147,176,.25);color:var(--text2);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🚶 거리뷰</button>
+        </div>
+      </div>
+    </div>`;
+  document.getElementById('infoContent').appendChild(extra);
   document.getElementById('infoSummaryLabel').textContent='⚠️ 유의사항';
   document.getElementById('infoSummaryText').textContent=typeGuide[item.type]||'공고 상세 페이지에서 조건을 직접 확인하세요.';
   let warning='';
