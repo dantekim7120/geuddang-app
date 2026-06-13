@@ -714,7 +714,7 @@ async function loadDetailInfo(item) {
   // 도로명 주소 비동기 조회 (3초 타임아웃)
   let roadAddr = '조회 중...';
   const timeout = setTimeout(()=>{ const el=document.getElementById('infoRoadAddr'); if(el)el.textContent='—'; }, 3000);
-  fetch(`${SERVER_URL}/api/landinfo?addr=${encodeURIComponent((item.jibun||'').trim())}&pnu=${item.pnu||''}`)
+  fetch(`${SERVER_URL}/api/landinfo?addr=${encodeURIComponent((item.jibun||'').trim())}&pnu=${item.pnu||''}&onbidCltrno=${item.onbidCltrno||''}&onbidPbancNo=${item.pbancNo||''}&pbctNo=${item.pbctNo||''}&pbctCdtnNo=${item.pbctCdtnNo||''}`)
     .then(r=>r.ok?r.json():null)
     .then(d=>{ clearTimeout(timeout); const el=document.getElementById('infoRoadAddr'); if(el)el.textContent=d?.roadAddr||'—'; })
     .catch(()=>{ clearTimeout(timeout); const el=document.getElementById('infoRoadAddr'); if(el)el.textContent='—'; });
