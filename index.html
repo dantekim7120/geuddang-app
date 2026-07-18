@@ -12,6 +12,7 @@
 <link rel="manifest" id="manifestLink">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1f35'/%3E%3Ccircle cx='32' cy='32' r='20' fill='%23222840' stroke='%234f7fff' stroke-width='2'/%3E%3Cline x1='32' y1='14' x2='32' y2='19' stroke='%238b93b0' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='32' y1='45' x2='32' y2='50' stroke='%238b93b0' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='14' y1='32' x2='19' y2='32' stroke='%238b93b0' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='45' y1='32' x2='50' y2='32' stroke='%238b93b0' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpolygon points='32,16 29.5,32 34.5,32' fill='%23ef4444'/%3E%3Cpolygon points='32,48 29.5,32 34.5,32' fill='%23e8ecf4'/%3E%3Ccircle cx='32' cy='32' r='3.5' fill='%234f7fff'/%3E%3C/svg%3E">
 <title>🧭 그 땅 내꺼</title>
+<meta name="build" content="v2-20260718">
 <script>
 const ICON192='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIiB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiI+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSI0MCIgZmlsbD0iIzFhMWYzNSIvPjxjaXJjbGUgY3g9Ijk2IiBjeT0iOTYiIHI9IjYyIiBmaWxsPSIjMjIyODQwIiBzdHJva2U9IiM0ZjdmZmYiIHN0cm9rZS13aWR0aD0iNiIvPjxsaW5lIHgxPSI5NiIgeTE9IjQwIiB4Mj0iOTYiIHkyPSI1OCIgc3Ryb2tlPSIjOGI5M2IwIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxsaW5lIHgxPSI5NiIgeTE9IjEzNCIgeDI9Ijk2IiB5Mj0iMTUyIiBzdHJva2U9IiM4YjkzYjAiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjQwIiB5MT0iOTYiIHgyPSI1OCIgeTI9Ijk2IiBzdHJva2U9IiM4YjkzYjAiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGxpbmUgeDE9IjEzNCIgeTE9Ijk2IiB4Mj0iMTUyIiB5Mj0iOTYiIHN0cm9rZT0iIzhiOTNiMCIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cG9seWdvbiBwb2ludHM9Ijk2LDQ2IDg4LDk4IDEwNCw5OCIgZmlsbD0iI2VmNDQ0NCIvPjxwb2x5Z29uIHBvaW50cz0iOTYsMTQ2IDg4LDk0IDEwNCw5NCIgZmlsbD0iI2U4ZWNmNCIvPjxjaXJjbGUgY3g9Ijk2IiBjeT0iOTYiIHI9IjEwIiBmaWxsPSIjNGY3ZmZmIi8+PGNpcmNsZSBjeD0iMTQ4IiBjeT0iMTQ4IiByPSIyMiIgZmlsbD0iIzIyYzU1ZSIvPjx0ZXh0IHg9IjE0OCIgeT0iMTU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuuCtOq6vDwvdGV4dD48L3N2Zz4=';
 const manifest={name:"그 땅 내꺼",short_name:"그 땅 내꺼",description:"공매 뜨면 바로 알려드립니다",start_url:"./",display:"standalone",background_color:"#0f1221",theme_color:"#1a1f35",orientation:"portrait",icons:[{src:ICON192,sizes:"192x192",type:"image/svg+xml",purpose:"any maskable"}]};
@@ -47,7 +48,12 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .status-dot{width:7px;height:7px;border-radius:50%;background:var(--text3);}
 .status-dot.running{background:var(--success);animation:pulse 1.5s infinite;}
 .status-dot.error{background:var(--danger);}
+.status-dot.offline{background:var(--warn);}
 .interval-select{background:var(--surface);border:1px solid var(--border);color:var(--text2);border-radius:6px;padding:3px 7px;font-size:12px;font-family:inherit;cursor:pointer;}
+
+/* Offline bar */
+.offline-bar{display:none;background:rgba(245,158,11,.12);border-bottom:1px solid rgba(245,158,11,.3);color:var(--warn);font-size:12px;padding:8px 18px;text-align:center;}
+.offline-bar.visible{display:block;}
 
 /* Panels */
 .tab-panel{display:none;}
@@ -85,14 +91,34 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .region-search-section{padding:18px 16px 12px;}
 .region-search-title{font-size:15px;font-weight:700;color:var(--text2);margin-bottom:12px;}
 .region-row{display:flex;gap:8px;margin-bottom:9px;}
-.region-input{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:12px 13px;font-size:14px;color:var(--text);font-family:inherit;outline:none;caret-color:var(--accent);transition:border-color .15s;}
+.region-field{position:relative;flex:1;}
+.region-input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:12px 13px;font-size:14px;color:var(--text);font-family:inherit;outline:none;caret-color:var(--accent);transition:border-color .15s;}
 .region-input:focus{border-color:var(--accent);}
 .region-input::placeholder{color:var(--text3);}
 .region-search-btn{width:100%;background:var(--accent);border:none;border-radius:11px;color:#fff;font-size:14px;font-weight:700;padding:13px;cursor:pointer;font-family:inherit;}
+.region-search-btn:disabled{opacity:.5;cursor:not-allowed;}
 .region-hint{font-size:12px;color:var(--text3);line-height:1.7;margin-top:11px;padding:11px 13px;background:var(--surface);border-radius:9px;border:1px solid var(--border);}
 .region-hint em{color:var(--accent2);font-style:normal;font-weight:600;}
+.region-hint strong{color:var(--warn);}
+
+/* 읍면동 자동완성 */
+.emd-drop{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--surface2);border:1px solid var(--accent);border-radius:11px;max-height:210px;overflow-y:auto;z-index:60;display:none;box-shadow:0 8px 24px rgba(0,0,0,.45);}
+.emd-drop.visible{display:block;}
+.emd-opt{padding:11px 13px;font-size:13px;cursor:pointer;border-bottom:1px solid rgba(46,53,88,.6);}
+.emd-opt:last-child{border-bottom:none;}
+.emd-opt:hover,.emd-opt.sel{background:rgba(79,127,255,.15);color:var(--accent);}
+.emd-opt.all{color:var(--accent2);font-weight:700;}
+.emd-loading{padding:11px 13px;font-size:12px;color:var(--text3);}
+
 .other-filter-wrap{display:none;padding:13px 16px;background:var(--surface);border-bottom:1px solid var(--border);border-top:1px solid var(--border);}
 .other-filter-wrap.visible{display:block;}
+
+/* 진행바 (읍면동 순회) */
+.progress-wrap{padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--border);display:none;}
+.progress-wrap.visible{display:block;}
+.progress-text{font-size:12px;color:var(--text2);margin-bottom:6px;display:flex;justify-content:space-between;}
+.progress-bar{height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--accent);width:0%;transition:width .25s;}
 
 /* List header */
 .list-header{padding:10px 16px;display:flex;align-items:center;justify-content:space-between;}
@@ -116,6 +142,7 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .badge-soon{background:rgba(239,68,68,.15);color:var(--danger);}
 .badge-org{background:rgba(124,92,252,.15);color:var(--accent2);}
 .badge-watch{background:rgba(249,115,22,.15);color:var(--watch);}
+.badge-emd{background:rgba(139,147,176,.15);color:var(--text2);}
 .item-title{font-size:15px;font-weight:600;line-height:1.4;}
 .item-body{padding:0 15px 13px;}
 .item-meta{display:grid;grid-template-columns:1fr 1fr;gap:7px 14px;margin-bottom:5px;}
@@ -126,6 +153,12 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .meta-val.deadline{color:var(--warn);}
 .meta-val.deadline.soon{color:var(--danger);}
 .price-change{font-size:11px;color:var(--warn);font-weight:600;}
+
+/* 회차 드롭다운 */
+.round-wrap{padding:0 15px 11px;display:flex;align-items:center;gap:8px;}
+.round-label{font-size:11px;color:var(--text3);font-weight:700;letter-spacing:.04em;}
+.round-select{flex:1;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:7px 9px;font-size:13px;font-family:inherit;cursor:pointer;}
+
 .item-footer{border-top:1px solid var(--border);padding:9px 15px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;}
 .item-date{font-size:12px;color:var(--text3);}
 .footer-btns{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
@@ -155,7 +188,7 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .toast.watch{border-color:var(--watch);}
 @keyframes slideUp{from{opacity:0;transform:translateY(9px);}to{opacity:1;transform:translateY(0);}}
 
-/* 공고/결과 모달 */
+/* 모달 */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:400;display:flex;align-items:flex-end;justify-content:center;}
 .modal-sheet{background:var(--surface);border-radius:20px 20px 0 0;width:100%;max-width:480px;max-height:88vh;display:flex;flex-direction:column;animation:slideSheet .25s ease;}
 @keyframes slideSheet{from{transform:translateY(30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
@@ -168,16 +201,9 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 .modal-summary-label{font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.05em;text-transform:uppercase;padding:12px 18px 6px;}
 .modal-summary-text{font-size:13px;color:var(--text2);line-height:1.8;padding:0 18px 12px;white-space:pre-wrap;}
 .modal-warning{margin:0 18px 12px;padding:11px 13px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:9px;font-size:13px;color:var(--warn);line-height:1.6;}
-
-/* 지도 섹션 */
-.map-section{margin:0 18px 12px;border-radius:10px;overflow:hidden;border:1px solid var(--border);}
-.map-frame{width:100%;height:200px;border:none;background:var(--surface2);}
-.map-label{font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.05em;text-transform:uppercase;padding:10px 18px 4px;}
-
 .modal-btns{display:flex;border-top:1px solid var(--border);flex-shrink:0;}
 .modal-btn{flex:1;background:none;border:none;padding:15px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--text2);}
 .modal-btn.primary{color:var(--accent);border-left:1px solid var(--border);}
-.modal-btn.success{color:var(--success);border-left:1px solid var(--border);}
 
 /* 입찰 사전안내 */
 .bid-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:500;display:flex;align-items:flex-end;justify-content:center;}
@@ -217,7 +243,7 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 <body>
 
 <!-- 설치 배너 -->
-<div class="install-banner" id="installBanner" style="display:none;">
+<div class="install-banner" id="installBanner">
   <div style="font-size:28px;flex-shrink:0;">📱</div>
   <div style="flex:1;">
     <div style="font-size:14px;font-weight:700;color:#e8ecf4;margin-bottom:2px;">앱처럼 설치하기</div>
@@ -227,7 +253,7 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
   <button onclick="document.getElementById('installBanner').style.display='none'" style="background:none;border:none;color:#5a6280;font-size:20px;cursor:pointer;padding:0 4px;flex-shrink:0;">✕</button>
 </div>
 
-<div class="ios-banner" id="iosBanner" style="display:none;">
+<div class="ios-banner" id="iosBanner">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:9px;">
     <div style="font-size:14px;font-weight:700;color:#e8ecf4;">📱 홈 화면에 추가하는 방법</div>
     <button onclick="document.getElementById('iosBanner').style.display='none'" style="background:none;border:none;color:#5a6280;font-size:17px;cursor:pointer;">✕</button>
@@ -243,7 +269,7 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 
 <!-- 공고/결과 모달 -->
 <div class="modal-overlay" id="infoModal" style="display:none;" onclick="closeInfoModal(event)">
-  <div class="modal-sheet">
+  <div class="modal-sheet" onclick="event.stopPropagation()">
     <div class="modal-handle"></div>
     <div class="modal-header">
       <div id="infoModalBadges" style="display:flex;gap:5px;flex-wrap:wrap;"></div>
@@ -256,10 +282,7 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
       </div>
       <div id="infoContent" style="display:none;">
         <div class="modal-meta" id="infoMeta"></div>
-        <div class="map-label" id="mapLabel" style="display:none;">📍 위치</div>
-        <div class="map-section" id="mapSection" style="display:none;">
-          <iframe class="map-frame" id="mapFrame" src="" title="지도"></iframe>
-        </div>
+        <div id="infoExtraSlot"></div>
         <div class="modal-summary-label" id="infoSummaryLabel">요약</div>
         <div class="modal-summary-text" id="infoSummaryText"></div>
         <div class="modal-warning" id="infoWarning" style="display:none;"></div>
@@ -274,7 +297,7 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 
 <!-- 입찰 사전안내 모달 -->
 <div class="bid-modal-overlay" id="bidModal" style="display:none;" onclick="closeBidModal(event)">
-  <div class="bid-modal-sheet">
+  <div class="bid-modal-sheet" onclick="event.stopPropagation()">
     <div class="bid-handle"></div>
     <div class="bid-modal-title">✍️ 입찰 전 확인사항</div>
     <div class="bid-modal-sub" id="bidModalSub">입찰을 진행하기 전 아래 내용을 확인해주세요</div>
@@ -287,7 +310,7 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
     <div class="bid-notice"><strong>⚠️ 주의</strong> — 확인 버튼을 누르면 온비드 로그인 페이지로 이동합니다.<br>로그인 후 해당 공고를 다시 검색하거나 입찰 메뉴에서 직접 참여하세요.</div>
     <div class="bid-btns">
       <button class="bid-btn-cancel" onclick="closeBidModal()">닫기</button>
-      <button class="bid-btn-confirm" id="bidConfirmBtn" onclick="goToBid()">확인 — 입찰하러 가기</button>
+      <button class="bid-btn-confirm" onclick="goToBid()">확인 — 입찰하러 가기</button>
     </div>
   </div>
 </div>
@@ -308,6 +331,8 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
   <button class="tab-btn watch-tab" id="tab-watch" onclick="switchTab('watch')">⭐ 관심 지번</button>
   <button class="tab-btn" id="tab-other" onclick="switchTab('other')">🔍 다른 지역</button>
 </div>
+
+<div class="offline-bar" id="offlineBar">📴 오프라인 — 마지막으로 저장된 정보를 보여드립니다</div>
 
 <div class="status-bar">
   <div class="status-left">
@@ -373,7 +398,7 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
     <div class="watch-title">⭐ 관심 지번 모니터링</div>
     <div class="watch-parcel-card" id="watchCard1">
       <div class="watch-parcel-name">경북 안동시 길안면 송사리 584</div>
-      <div class="watch-parcel-addr">도로명: 확인 중... | 지목: 확인 중...</div>
+      <div class="watch-parcel-addr">PNU 4717039025005840000</div>
       <div class="watch-status waiting" id="watchStatus1">🔍 공매 공고 감시 중...</div>
       <button class="watch-btn" onclick="openWatchLandInfo()">📋 토지 정보 보기</button>
     </div>
@@ -391,16 +416,32 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
   <div class="region-search-section">
     <div class="region-search-title">📌 지역 검색</div>
     <div class="region-row">
-      <input type="text" id="rSido" class="region-input" placeholder="시/도" autocomplete="off" style="max-width:78px;"/>
-      <input type="text" id="rGugun" class="region-input" placeholder="시/군/구" autocomplete="off"/>
-      <input type="text" id="rDong" class="region-input" placeholder="면/읍/동" autocomplete="off"/>
+      <div class="region-field" style="max-width:82px;flex:0 0 82px;">
+        <input type="text" id="rSido" class="region-input" placeholder="시/도" autocomplete="off"/>
+      </div>
+      <div class="region-field">
+        <input type="text" id="rGugun" class="region-input" placeholder="시/군/구" autocomplete="off"/>
+      </div>
+      <div class="region-field">
+        <input type="text" id="rDong" class="region-input" placeholder="면/읍/동" autocomplete="off"/>
+        <div class="emd-drop" id="emdDrop"></div>
+      </div>
     </div>
-    <button class="region-search-btn" onclick="searchOtherRegion()">🔍 공고 검색</button>
+    <button class="region-search-btn" id="regionSearchBtn" onclick="searchOtherRegion()">🔍 공고 검색</button>
     <div class="region-hint">
-      면 단위까지 검색 가능합니다<br>
-      예) <em>경북</em> + <em>청송군</em> + <em>현서면</em> &nbsp;|&nbsp; <em>경남</em> + <em>함양군</em> + <em>서상면</em>
+      면/읍/동은 <strong>비워두면 시·군·구 전체</strong>를 훑습니다<br>
+      예) <em>경북</em> + <em>청송군</em> + <em>(빈칸)</em> &nbsp;|&nbsp; <em>경남</em> + <em>함양군</em> + <em>서상면</em>
     </div>
   </div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-text">
+      <span id="progressLabel">읍면동 순회 중...</span>
+      <span id="progressCount">0 / 0</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
   <div class="other-filter-wrap" id="otherFilterWrap">
     <div class="filter-label">공고 종류</div>
     <div class="filter-row" id="otherTypeFilter">
@@ -430,7 +471,7 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
     <div class="empty-state">
       <div class="empty-icon">📍</div>
       <div class="empty-title">지역을 입력하고 검색하세요</div>
-      <div class="empty-desc">시/도 · 시군구 · 면읍동 순서로 입력<br>면 단위까지 검색 가능합니다</div>
+      <div class="empty-desc">시/도 · 시군구 · 면읍동 순서로 입력<br>면읍동을 비우면 시군구 전체를 검색합니다</div>
     </div>
   </div>
 </div>
@@ -440,188 +481,475 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 </div>
 
 <script>
-// ══ 설정 ═════════════════════════════════════════════════
-const SERVER_URL = 'https://geuddang-worker.dantekim7120.workers.dev';
-const VWORLD_KEY = '56C7E3CE-D3A8-3878-A807-BBC4A265EE8B';
-const WATCH_PARCELS = [{ ri:'송사리', bunji:'584', label:'경북 안동시 길안면 송사리 584', pnu:'4773032027100580000' }];
+/* ════════════════════════════════════════════════════════
+   그 땅 내꺼 — 4축 아키텍처
+   [레이어드] L0 저장소 → L1 캐시 → L2 네트워크 → L3 렌더
+   [믹스]     무거운 것은 미리 로컬 / 가벼운 것만 실시간
+   [반복]     단순 단위 반복 + 중단 조건 분리
+   [스위칭]   데이터(고정 자산) / 엔진(교체 부품) 분리
+   ════════════════════════════════════════════════════════ */
 
-// ══ State ════════════════════════════════════════════════
+// ══ [스위칭] DATA — 고정 자산 ═════════════════════════════
+const DATA = {
+  SERVER: 'https://geuddang-worker.dantekim7120.workers.dev',
+  APP_URL: 'https://dantekim7120-ui.github.io/geuddang-app/',
+  HOME: { sido:'경북', gugun:'안동시', dong:'길안면' },
+  WATCH_PARCELS: [
+    { ri:'송사리', bunji:'584', label:'경북 안동시 길안면 송사리 584', pnu:'4717039025005840000' }
+  ],
+  FIREBASE: {
+    apiKey:"AIzaSyAMQp0hYqy-jeUfDdcRTDiSIbB0HgmehUo",
+    authDomain:"geuddang-monitor.firebaseapp.com",
+    projectId:"geuddang-monitor",
+    storageBucket:"geuddang-monitor.firebasestorage.app",
+    messagingSenderId:"248172557002",
+    appId:"1:248172557002:web:b6c159a3eae5ecae43fa33"
+  },
+  VAPID:"BA424su0CcYuy4MnmEKbT4WoYyTv7Nu9W685xIakrot7FK-USNY-Kreye6S98vMHWq24R1HW40zH4vDErjQ0pRo"
+};
+
+// ══ [레이어드] L0 — 저장소 계층 (영구) ════════════════════
+const L0 = {
+  get(k, def=null){
+    try{ const v=localStorage.getItem('gd:'+k); return v?JSON.parse(v):def; }
+    catch(e){ return def; }
+  },
+  set(k, v){
+    try{ localStorage.setItem('gd:'+k, JSON.stringify(v)); return true; }
+    catch(e){ return false; }
+  },
+  del(k){ try{ localStorage.removeItem('gd:'+k); }catch(e){} }
+};
+
+// ══ [레이어드] L1 — 메모리 캐시 계층 (휘발) ═══════════════
+const L1 = {
+  _v:new Map(), _t:new Map(),
+  get(k){
+    const exp=this._t.get(k);
+    if(exp && Date.now()>exp){ this._v.delete(k); this._t.delete(k); return null; }
+    return this._v.has(k) ? this._v.get(k) : null;
+  },
+  set(k,v,ms=180000){ this._v.set(k,v); this._t.set(k,Date.now()+ms); },
+  clear(){ this._v.clear(); this._t.clear(); }
+};
+
+// ══ [반복] 단순 단위 반복 + 중단 조건 분리 ════════════════
+async function repeatUntil(fn, opt={}){
+  const max=opt.max??3, delay=opt.delay??700;
+  const stopOn=opt.stopOn||(r=>r!==null&&r!==undefined&&r!==false);
+  let last=null;
+  for(let i=0;i<max;i++){
+    try{ last=await fn(i); if(stopOn(last)) return {ok:true,value:last,tries:i+1}; }
+    catch(e){ last=null; }
+    if(i<max-1) await new Promise(r=>setTimeout(r, delay*(i+1)));
+  }
+  return {ok:false,value:last,tries:max};
+}
+
+// ══ [레이어드] L2 — 네트워크 계층 (재시도 내장) ═══════════
+async function L2fetch(path, opt={}){
+  const timeout=opt.timeout??12000, retry=opt.retry??2;
+  const run=async()=>{
+    const ac=new AbortController();
+    const tid=setTimeout(()=>ac.abort(), timeout);
+    try{
+      const r=await fetch(DATA.SERVER+path,{cache:'no-cache',signal:ac.signal});
+      clearTimeout(tid);
+      if(!r.ok) return null;
+      return await r.json();
+    }catch(e){ clearTimeout(tid); return null; }
+  };
+  const res=await repeatUntil(run,{max:retry+1,delay:700});
+  NET.online = res.ok || navigator.onLine;
+  updateOfflineBar();
+  return res.value;
+}
+
+// ══ [상태 보존] 마지막 상태 항상 갱신 ═════════════════════
+const STATE = {
+  save(patch){ L0.set('state', {...L0.get('state',{}), ...patch, at:Date.now()}); },
+  load(){ return L0.get('state',{}); }
+};
+
+const NET = { online: navigator.onLine };
+
+// ══ State ═════════════════════════════════════════════════
 let currentTab='home', homeItems=[], homePrev={}, homeType='all', homeAlert='all', homeQ='';
 let otherItems=[], otherType='all', otherQuery={sido:'',gugun:'',dong:''};
 let autoTimer=null, notifyEnabled=false, pendingBidUrl='';
-let itemIndex={};
+let itemIndex={}, emdSelIdx=-1, emdOptions=[], emdDebounce=null, emdKey='';
 
-// ══ Tab ══════════════════════════════════════════════════
-function switchTab(tab) {
+// ══ 시도 정규화 [스위칭: 데이터 테이블] ═══════════════════
+const SIDO_MAP={'서울':'서울특별시','부산':'부산광역시','대구':'대구광역시','인천':'인천광역시','광주':'광주광역시','대전':'대전광역시','울산':'울산광역시','세종':'세종특별자치시','경기':'경기도','강원':'강원특별자치도','충북':'충청북도','충남':'충청남도','전북':'전북특별자치도','전남':'전라남도','경북':'경상북도','경남':'경상남도','제주':'제주특별자치도'};
+function normSido(v){
+  if(!v) return '';
+  const s=v.trim();
+  if(SIDO_MAP[s]) return SIDO_MAP[s];
+  if(Object.values(SIDO_MAP).includes(s)) return s;
+  for(const k in SIDO_MAP) if(s.startsWith(k)) return SIDO_MAP[k];
+  return s;
+}
+
+// ══ [경계 매칭] 1584 / 5840 오탐 차단 ═════════════════════
+function isWatchItem(item){
+  const hay=`${item.jibun||''} ${item.title||''}`;
+  return DATA.WATCH_PARCELS.some(w=>{
+    if(!hay.includes(w.ri)) return false;
+    return new RegExp('(^|[^0-9])'+w.bunji+'([^0-9-]|$)').test(hay);
+  });
+}
+
+function parseItemDate(s){
+  if(!s) return null;
+  const m=s.match(/(\d{4})[.\-\/](\d{1,2})[.\-\/](\d{1,2})/);
+  return m ? new Date(+m[1], +m[2]-1, +m[3]) : null;
+}
+function recalcDays(list){
+  list.forEach(it=>{
+    if(it.endDateStr) it.endDate=parseItemDate(it.endDateStr);
+    it.daysLeft = it.endDate ? Math.ceil((it.endDate-new Date())/86400000) : 999;
+    if(Array.isArray(it.rounds)){
+      it.rounds.forEach(r=>{
+        const d=parseItemDate(r.endDateStr);
+        r.daysLeft = d ? Math.ceil((d-new Date())/86400000) : 999;
+      });
+    }
+  });
+  return list;
+}
+
+// ══ Tab ═══════════════════════════════════════════════════
+function switchTab(tab){
   currentTab=tab;
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.id==='tab-'+tab));
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id==='panel-'+tab));
   const q=otherQuery;
   document.getElementById('headerSub').textContent =
-    tab==='home'?'공매 뜨면 바로 알려드립니다':
-    tab==='watch'?'관심 지번 실시간 감시 중':
+    tab==='home' ? '공매 뜨면 바로 알려드립니다' :
+    tab==='watch'? '관심 지번 실시간 감시 중' :
     ([q.sido,q.gugun,q.dong].filter(Boolean).join(' ')||'다른 지역 찾기');
+  STATE.save({tab});
 }
 
+// ══ [믹스] 무거운 것: 읍면동 목록 — L0 영구 + 백그라운드 갱신 ══
+async function getEmdList(sido, sgg, opt={}){
+  const key=`emd:${sido}:${sgg}`;
 
+  const mem=L1.get(key);
+  if(mem) return mem;
 
-function parseItemDate(s) {
-  if (!s) return null;
-  const m = s.match(/(\d{4})[.\-\/](\d{1,2})[.\-\/](\d{1,2})/);
-  return m ? new Date(+m[1], +m[2]-1, +m[3]) : null;
-}
-
-function isWatchItem(item) {
-  return WATCH_PARCELS.some(w=>(item.jibun||'').includes(w.ri)&&(item.jibun||'').includes(w.bunji)||(item.title||'').includes(w.ri)&&(item.title||'').includes(w.bunji));
-}
-
-// ══ Home fetch ════════════════════════════════════════════
-async function fetchHomeData(silent=false, force=false) {
-  if (!silent) { setStatus('running','데이터 가져오는 중...'); showLoading('온비드 길안면 공매 확인 중...'); }
-  else setStatus('running','백그라운드 감지 중...');
-
-  let items=[];
-  try {
-    const url = force ? `${SERVER_URL}/api/items?force=1` : `${SERVER_URL}/api/items`;
-    const r = await fetch(url, { cache:'no-cache' });
-    if (!r.ok) throw new Error('서버 응답 오류');
-    const j = await r.json();
-    if (j.ok && j.items && j.items.length > 0) {
-      items = j.items.filter(item => (item.jibun||'').includes('길안면') || (item.title||'').includes('길안면'));
-      items.forEach(item => {
-        if (item.endDateStr) item.endDate = parseItemDate(item.endDateStr);
-        item.daysLeft = item.endDate ? Math.ceil((item.endDate - new Date()) / 86400000) : 999;
-      });
-    }
-    // 공고 없음 — 빈 배열 그대로
-  } catch(e) {
-    if (!silent) showToast('⚠️ 서버 연결 실패','warn');
+  const local=L0.get(key);
+  if(local&&local.list&&local.list.length){
+    L1.set(key, local.list, 600000);
+    if(opt.background!==false) refreshEmdBg(sido,sgg);
+    return local.list;
   }
 
+  const j=await L2fetch(`/api/emd?sido=${encodeURIComponent(sido)}&sgg=${encodeURIComponent(sgg)}`);
+  const list=(j&&j.list)||[];
+  if(list.length){ L0.set(key,{list,at:Date.now()}); L1.set(key,list,600000); }
+  return list;
+}
+async function refreshEmdBg(sido,sgg){
+  const key=`emd:${sido}:${sgg}`;
+  const j=await L2fetch(`/api/emd?sido=${encodeURIComponent(sido)}&sgg=${encodeURIComponent(sgg)}`,{retry:0});
+  const list=(j&&j.list)||[];
+  if(list.length){ L0.set(key,{list,at:Date.now()}); L1.set(key,list,600000); }
+}
+
+// ══ 읍면동 자동완성 [C] ═══════════════════════════════════
+async function onDongFocus(){
+  const sido=normSido(document.getElementById('rSido').value);
+  const sgg=document.getElementById('rGugun').value.trim();
+  if(!sido||!sgg){
+    const d=document.getElementById('emdDrop');
+    d.innerHTML='<div class="emd-loading">시/도와 시/군/구를 먼저 입력해주세요</div>';
+    d.classList.add('visible');
+    return;
+  }
+
+  // 이미 받아둔 목록이 있으면 즉시 표시 [믹스: 미리 확보한 자산 활용]
+  if(emdOptions.length && emdKey===`${sido}:${sgg}`){
+    renderEmdDrop(document.getElementById('rDong').value.trim());
+    return;
+  }
+
+  const drop=document.getElementById('emdDrop');
+  drop.innerHTML='<div class="emd-loading">읍면동 목록 불러오는 중...</div>';
+  drop.classList.add('visible');
+
+  const list=await getEmdList(sido,sgg);
+  emdOptions=list;
+  emdKey=`${sido}:${sgg}`;
+  renderEmdDrop(document.getElementById('rDong').value.trim());
+}
+function renderEmdDrop(q){
+  const drop=document.getElementById('emdDrop');
+  if(!emdOptions.length){
+    drop.innerHTML='<div class="emd-loading">읍면동 목록을 가져오지 못했습니다. 직접 입력하세요.</div>';
+    drop.classList.add('visible'); return;
+  }
+  const filtered=q ? emdOptions.filter(e=>e.includes(q)) : emdOptions;
+  emdSelIdx=-1;
+  const head=`<div class="emd-opt all" data-v="">📋 전체 (시·군·구 전부 훑기)</div>`;
+  drop.innerHTML = head + (filtered.length
+    ? filtered.map(e=>`<div class="emd-opt" data-v="${e}">${e}</div>`).join('')
+    : '<div class="emd-loading">일치하는 읍면동이 없습니다</div>');
+  drop.querySelectorAll('.emd-opt').forEach(el=>{
+    el.addEventListener('mousedown',ev=>{
+      ev.preventDefault();
+      document.getElementById('rDong').value=el.dataset.v;
+      hideEmdDrop();
+    });
+  });
+  drop.classList.add('visible');
+}
+function hideEmdDrop(){ document.getElementById('emdDrop').classList.remove('visible'); emdSelIdx=-1; }
+function onDongInput(){
+  clearTimeout(emdDebounce);
+  emdDebounce=setTimeout(()=>renderEmdDrop(document.getElementById('rDong').value.trim()),120);
+}
+function onDongKey(e){
+  const drop=document.getElementById('emdDrop');
+  if(!drop.classList.contains('visible')){ if(e.key==='Enter') searchOtherRegion(); return; }
+  const opts=[...drop.querySelectorAll('.emd-opt')];
+  if(e.key==='ArrowDown'||e.key==='ArrowUp'){
+    e.preventDefault();
+    if(!opts.length) return;
+    emdSelIdx = e.key==='ArrowDown'
+      ? Math.min(emdSelIdx+1, opts.length-1)
+      : Math.max(emdSelIdx-1, 0);
+    opts.forEach((o,i)=>o.classList.toggle('sel',i===emdSelIdx));
+    opts[emdSelIdx].scrollIntoView({block:'nearest'});
+  } else if(e.key==='Enter'){
+    e.preventDefault();
+    if(emdSelIdx>=0&&opts[emdSelIdx]){ document.getElementById('rDong').value=opts[emdSelIdx].dataset.v; hideEmdDrop(); }
+    else { hideEmdDrop(); searchOtherRegion(); }
+  } else if(e.key==='Escape'){ hideEmdDrop(); }
+}
+
+// ══ [레이어드+믹스] 길안면 모니터 ═════════════════════════
+async function fetchHomeData(silent=false, force=false){
+  if(!silent){ setStatus('running','데이터 가져오는 중...'); showLoading('온비드 길안면 공매 확인 중...'); }
+  else setStatus('running','백그라운드 감지 중...');
+
+  // L0: 저장된 마지막 상태 먼저 그림 (끊겨도 화면 0 손실)
+  if(!homeItems.length){
+    const cached=L0.get('homeItems');
+    if(cached&&cached.length){ homeItems=recalcDays(cached); renderHomeList(); }
+  }
+
+  const j=await L2fetch(force?'/api/items?force=1':'/api/items');
+  let items=null;
+  if(j&&j.ok&&Array.isArray(j.items)) items=recalcDays(j.items);
+
+  if(items===null){
+    if(!silent){ hideLoading(); showToast('⚠️ 서버 연결 실패 — 저장된 정보를 표시합니다','warn'); }
+    setStatus('error','연결 실패 (저장본 표시)');
+    renderHomeList(); updateWatchTab();
+    return;
+  }
+
+  // [이중 저장] 서버 응답 → 로컬 영구 보존
+  L0.set('homeItems', items);
+  L0.set('homeSyncAt', Date.now());
+
   const notifs=[], newMap={};
+  const prevStore = Object.keys(homePrev).length ? homePrev : L0.get('homePrev',{});
   items.forEach(item=>{
     newMap[item.id]=item; itemIndex[item.id]=item;
-    const prev=homePrev[item.id];
-    if (!prev){item.isNew=true;notifs.push({type:isWatchItem(item)?'watch':'new',item});}
-    else if(prev.price&&item.price&&prev.price!==item.price){item.priceChanged=true;item.prevPrice=prev.price;notifs.push({type:isWatchItem(item)?'watch_price':'price',item});}
-    if(item.daysLeft<=3&&item.daysLeft>=0&&!prev?.deadlineSoon){item.deadlineSoon=true;notifs.push({type:isWatchItem(item)?'watch_deadline':'deadline',item});}
+    const prev=prevStore[item.id];
+    const w=isWatchItem(item);
+    if(!prev){ item.isNew=true; notifs.push({type:w?'watch':'new',item}); }
+    else if(prev.price&&item.price&&prev.price!==item.price){
+      item.priceChanged=true; item.prevPrice=prev.price;
+      notifs.push({type:w?'watch_price':'price',item});
+    }
+    if(item.daysLeft<=3&&item.daysLeft>=0&&!(prev&&prev.deadlineSoon)){
+      item.deadlineSoon=true; notifs.push({type:w?'watch_deadline':'deadline',item});
+    }
+    if(!item.changedAt&&prev&&prev.changedAt) item.changedAt=prev.changedAt;
   });
   homePrev=newMap; homeItems=items;
-  if(!silent)hideLoading();
+  L0.set('homePrev',newMap);
+
+  if(!silent) hideLoading();
   setStatus('running','감지 중');
   updateLastCheck(); renderHomeList();
   notifs.forEach(n=>sendBrowserPush(n));
   updateWatchTab();
 }
 
-// ══ Other region ══════════════════════════════════════════
-const SIDO_MAP={'서울':11,'부산':26,'대구':27,'인천':28,'광주':29,'대전':30,'울산':31,'세종':36,'경기':41,'강원':42,'충북':43,'충남':44,'전북':45,'전남':46,'경북':47,'경남':48,'제주':50};
+// ══ [반복+믹스] 다른 지역 검색 (B: 시군구 전체 지원) ══════
+async function searchOtherRegion(){
+  hideEmdDrop();
+  const sidoRaw=document.getElementById('rSido').value.trim();
+  const sido=normSido(sidoRaw);
+  const gugun=document.getElementById('rGugun').value.trim();
+  const dong=document.getElementById('rDong').value.trim();
 
-async function searchOtherRegion() {
-  const sido=document.getElementById('rSido').value.trim(), gugun=document.getElementById('rGugun').value.trim(), dong=document.getElementById('rDong').value.trim();
-  if(!sido&&!gugun&&!dong){showToast('시/도를 입력해주세요','warn');return;}
-  otherQuery={sido,gugun,dong};
-  document.getElementById('headerSub').textContent=[sido,gugun,dong].filter(Boolean).join(' ');
+  if(!sido){ showToast('시/도를 입력해주세요','warn'); return; }
+  if(!gugun){ showToast('시/군/구를 입력해주세요','warn'); return; }
+
+  otherQuery={sido:sidoRaw||sido,gugun,dong};
+  STATE.save({lastSearch:otherQuery});
+
+  document.getElementById('headerSub').textContent=[sidoRaw||sido,gugun,dong].filter(Boolean).join(' ');
   document.getElementById('otherInitMsg').style.display='none';
   document.getElementById('otherResultWrap').style.display='block';
   document.getElementById('otherFilterWrap').classList.add('visible');
   otherType='all';
   document.querySelectorAll('#otherTypeFilter .filter-chip').forEach(b=>b.classList.toggle('active',b.dataset.type==='all'));
-  showLoading(`${[sido,gugun,dong].filter(Boolean).join(' ')} 공고 검색 중...`);
 
-  let items=[], mock=false;
-  try {
-    const params = new URLSearchParams({ sido, gugun, dong });
-    const r = await fetch(`${SERVER_URL}/api/search?${params}`, { cache:'no-cache' });
-    if(r.ok) {
-      const j = await r.json();
-      if(j.ok && j.items?.length) {
-        items = j.items;
-        items.forEach(item => {
-          if(item.endDateStr) item.endDate = parseItemDate(item.endDateStr);
-          item.daysLeft = item.endDate ? Math.ceil((item.endDate-new Date())/86400000) : 999;
-        });
-      }
-      // 공고 없음 — 빈 배열
-    } else throw new Error('서버 오류');
-  } catch(e) {
-    if (!silent) showToast('⚠️ 서버 연결 실패','warn');
+  const btn=document.getElementById('regionSearchBtn');
+  btn.disabled=true;
+
+  let items=null;
+
+  if(dong){
+    // 단일 읍면동 — 서버 1회
+    showLoading(`${[sido,gugun,dong].join(' ')} 공고 검색 중...`);
+    const j=await L2fetch(`/api/search?${new URLSearchParams({sido,gugun,dong})}`);
+    items = (j&&j.ok&&Array.isArray(j.items)) ? recalcDays(j.items) : null;
+    hideLoading();
+  } else {
+    // [B] 시군구 전체 — 클라이언트에서 읍면동 순회 (진행률 표시)
+    showLoading(`${gugun} 읍면동 목록 확인 중...`);
+    const emds=await getEmdList(sido,gugun);
+    hideLoading();
+
+    if(!emds.length){
+      showToast('읍면동 목록을 가져오지 못했습니다 — 서버 일괄 검색으로 전환','warn');
+      showLoading(`${gugun} 전체 검색 중...`);
+      const j=await L2fetch(`/api/search?${new URLSearchParams({sido,gugun,dong:''})}`,{timeout:45000});
+      items=(j&&j.ok&&Array.isArray(j.items))?recalcDays(j.items):null;
+      hideLoading();
+    } else {
+      const ok=confirm(`${gugun} 전체를 검색합니다.\n읍면동 ${emds.length}곳을 순회하며 온비드에 ${emds.length}회 요청합니다.\n\n계속할까요?`);
+      if(!ok){ btn.disabled=false; document.getElementById('otherInitMsg').style.display='block'; document.getElementById('otherResultWrap').style.display='none'; return; }
+
+      items=await sweepEmds(sido,gugun,emds);
+    }
   }
 
-  items.forEach(i=>itemIndex[i.id]=i);
-  otherItems=items;
-  hideLoading();
+  btn.disabled=false;
+
+  if(items===null){
+    const cached=L0.get(`search:${sido}:${gugun}:${dong}`);
+    if(cached&&cached.length){
+      otherItems=recalcDays(cached);
+      showToast('⚠️ 서버 연결 실패 — 저장된 검색 결과를 표시합니다','warn');
+    } else {
+      otherItems=[];
+      showToast('⚠️ 서버 연결 실패','error');
+    }
+  } else {
+    otherItems=items;
+    L0.set(`search:${sido}:${gugun}:${dong}`, items);
+  }
+
+  otherItems.forEach(i=>itemIndex[i.id]=i);
   setStatus('running','감지 중');
   renderOtherList();
 }
 
-// ══ Render ════════════════════════════════════════════════
-function renderHomeList() {
-  let items=[...homeItems];
-  if(homeType!=='all')items=items.filter(i=>i.type===homeType);
-  if(homeAlert==='new')items=items.filter(i=>i.isNew);
-  else if(homeAlert==='price')items=items.filter(i=>i.priceChanged);
-  else if(homeAlert==='soon')items=items.filter(i=>i.deadlineSoon);
-  if(homeQ){const q=homeQ.toLowerCase();items=items.filter(i=>i.title.toLowerCase().includes(q)||i.jibun.toLowerCase().includes(q));}
-  items=sortItems(items,document.getElementById('homeSortSelect').value);
-  document.getElementById('homeCount').textContent=items.length;
-  document.getElementById('homeList').innerHTML=items.length?items.map(i=>cardHtml(i,homeQ)).join(''):emptyHtml('길안면 공고가 없거나 조건을 조정해보세요');
+// ══ [반복] 읍면동 순회 — 단순 단위 반복, 중단 조건 분리 ═══
+async function sweepEmds(sido,gugun,emds){
+  const wrap=document.getElementById('progressWrap');
+  const fill=document.getElementById('progressFill');
+  const cnt=document.getElementById('progressCount');
+  const lbl=document.getElementById('progressLabel');
+  wrap.classList.add('visible');
+
+  const all=[]; let done=0, failStreak=0, aborted=false;
+
+  for(const emd of emds){
+    lbl.textContent=`${emd} 조회 중...`;
+    const j=await L2fetch(`/api/search?${new URLSearchParams({sido,gugun,dong:emd})}`,{retry:1,timeout:10000});
+
+    if(j&&j.ok&&Array.isArray(j.items)){
+      failStreak=0;
+      j.items.forEach(it=>{ it._emd=emd; all.push(it); });
+    } else {
+      failStreak++;
+      // [반복 중단 조건] 연속 3회 실패 = 서버/한도 문제로 판단, 중단
+      if(failStreak>=3){ aborted=true; break; }
+    }
+
+    done++;
+    const pct=Math.round(done/emds.length*100);
+    fill.style.width=pct+'%';
+    cnt.textContent=`${done} / ${emds.length}`;
+  }
+
+  wrap.classList.remove('visible');
+  fill.style.width='0%';
+
+  if(aborted){
+    showToast(`⚠️ ${done}/${emds.length}곳까지만 조회됐습니다 (연속 실패로 중단)`,'warn');
+  }
+  if(!all.length && aborted) return null;
+
+  // 중복 제거 (같은 물건이 여러 읍면동에 걸릴 수 있음)
+  const seen=new Set(); const uniq=[];
+  for(const it of all){ if(seen.has(it.id)) continue; seen.add(it.id); uniq.push(it); }
+  return recalcDays(uniq);
 }
 
-function renderOtherList() {
+// ══ [레이어드] L3 — 렌더 계층 ═════════════════════════════
+function renderHomeList(){
+  let items=[...homeItems];
+  if(homeType!=='all') items=items.filter(i=>i.type===homeType);
+  if(homeAlert==='new') items=items.filter(i=>i.isNew);
+  else if(homeAlert==='price') items=items.filter(i=>i.priceChanged);
+  else if(homeAlert==='soon') items=items.filter(i=>i.deadlineSoon);
+  if(homeQ){
+    const q=homeQ.toLowerCase();
+    items=items.filter(i=>(i.title||'').toLowerCase().includes(q)||(i.jibun||'').toLowerCase().includes(q));
+  }
+  items=sortItems(items,document.getElementById('homeSortSelect').value);
+  document.getElementById('homeCount').textContent=items.length;
+  document.getElementById('homeList').innerHTML = items.length
+    ? items.map(i=>cardHtml(i,homeQ)).join('')
+    : emptyHtml('길안면 공고가 없거나 조건을 조정해보세요');
+}
+
+function renderOtherList(){
   let items=[...otherItems];
-  if(otherType!=='all')items=items.filter(i=>i.type===otherType);
+  if(otherType!=='all') items=items.filter(i=>i.type===otherType);
   items=sortItems(items,document.getElementById('otherSortSelect').value);
   const q=otherQuery;
   document.getElementById('otherCount').textContent=items.length;
-  document.getElementById('otherList').innerHTML=items.length?items.map(i=>cardHtml(i,'')).join(''):emptyHtml(`${[q.sido,q.gugun,q.dong].filter(Boolean).join(' ')} 지역 공고가 없습니다`);
+  document.getElementById('otherList').innerHTML = items.length
+    ? items.map(i=>cardHtml(i,'')).join('')
+    : emptyHtml(`${[q.sido,q.gugun,q.dong].filter(Boolean).join(' ')} 지역 공고가 없습니다`);
 }
 
-function sortItems(items,sort) {
-  if(sort==='deadline')return items.sort((a,b)=>a.daysLeft-b.daysLeft);
-  if(sort==='price_low')return items.sort((a,b)=>a.price-b.price);
-  if(sort==='price_high')return items.sort((a,b)=>b.price-a.price);
+function sortItems(items,sort){
+  if(sort==='deadline') return items.sort((a,b)=>(a.daysLeft??999)-(b.daysLeft??999));
+  if(sort==='price_low') return items.sort((a,b)=>(a.price||0)-(b.price||0));
+  if(sort==='price_high') return items.sort((a,b)=>(b.price||0)-(a.price||0));
   return items;
 }
 
-// ══ 관심 지번 탭 업데이트 ════════════════════════════════
-function updateWatchTab() {
-  WATCH_PARCELS.forEach((w,i)=>{
-    const found = homeItems.filter(item=>isWatchItem(item));
-    const el = document.getElementById(`watchStatus${i+1}`);
-    if(!el)return;
-    if(found.length>0){
-      el.className='watch-status found';
-      el.textContent=`✅ 현재 ${found.length}건 공매 진행 중`;
-    } else {
-      el.className='watch-status waiting';
-      el.textContent='🔍 공매 공고 감시 중...';
-    }
-  });
-
-  // 관심 지번 공고 카드 표시
-  const watchItems = homeItems.filter(item=>isWatchItem(item));
-  const watchListEl = document.getElementById('watchItemList');
-  if(!watchListEl) return;
-  if(watchItems.length>0){
-    watchListEl.style.display='block';
-    watchListEl.innerHTML=`
-      <div style="font-size:13px;font-weight:700;color:var(--watch);margin-bottom:10px;">📋 진행 중인 공고 ${watchItems.length}건</div>
-      ${watchItems.map(i=>cardHtml(i,'')).join('')}
-    `;
-  } else {
-    watchListEl.style.display='none';
+// ══ 관심 지번 탭 ══════════════════════════════════════════
+function updateWatchTab(){
+  const found=homeItems.filter(isWatchItem);
+  const el=document.getElementById('watchStatus1');
+  if(el){
+    if(found.length){ el.className='watch-status found'; el.textContent=`✅ 현재 ${found.length}건 공매 진행 중`; }
+    else{ el.className='watch-status waiting'; el.textContent='🔍 공매 공고 감시 중...'; }
   }
+  const listEl=document.getElementById('watchItemList');
+  if(!listEl) return;
+  if(found.length){
+    listEl.style.display='block';
+    listEl.innerHTML=`<div style="font-size:13px;font-weight:700;color:var(--watch);margin-bottom:10px;">📋 진행 중인 공고 ${found.length}건</div>`+found.map(i=>cardHtml(i,'')).join('');
+  } else listEl.style.display='none';
 }
 
-// ══ 관심 지번 토지 정보 ═══════════════════════════════════
-async function openWatchLandInfo() {
-  const w = WATCH_PARCELS[0];
-  openLandInfo(w.pnu, w.label);
-}
-
-// ══ Card HTML ═════════════════════════════════════════════
-function cardHtml(item, q) {
+// ══ Card HTML (회차 드롭다운 포함) ════════════════════════
+function cardHtml(item,q){
   const watch=isWatchItem(item);
   const cls=watch?'watch-item':item.deadlineSoon?'deadline-soon':item.isNew?'new-item':item.priceChanged?'price-changed':'';
   const price=item.price?`${(item.price/10000).toLocaleString()}만원`:'—';
@@ -629,184 +957,197 @@ function cardHtml(item, q) {
   const prev=item.prevPrice?`이전 ${(item.prevPrice/10000).toLocaleString()}만원`:'';
   const dlCls=item.daysLeft<=3?'soon':'';
   const dl=item.daysLeft===999?'—':item.daysLeft<=0?'마감':`D-${item.daysLeft}`;
-  const detailUrl=`https://www.onbid.co.kr/op/cltrpbancinf/cltr/cltrcdtnsrch/CltrCdtnSrchController/mvmnCltrCdtnSrchClg.do`;
-  const titleHtml=q?hl(item.title,q):item.title;
-  const discountRate=item.price&&item.minBidPrice&&item.price!==item.minBidPrice?Math.round((1-item.minBidPrice/item.price)*100):0;
-  return `<div class="item-card ${cls}">
+  const detailUrl=`https://www.onbid.co.kr/op/cltrpbancinf/pbanc/pbancdtlinf/PbancDtlInqController/mvmnPbancDtl.do?onbidCltrno=${item.onbidCltrno||item.id}&onbidPbancNo=${item.pbancNo||''}`;
+  const titleHtml=q?hl(item.title||'',q):(item.title||'');
+  const dr=item.price&&item.minBidPrice&&item.price!==item.minBidPrice?Math.round((1-item.minBidPrice/item.price)*100):0;
+
+  const roundHtml=(Array.isArray(item.rounds)&&item.rounds.length>1)?`
+  <div class="round-wrap">
+    <span class="round-label">회차</span>
+    <select class="round-select" onchange="changeRound('${item.id}',this.value,this)">
+      ${item.rounds.map((r,i)=>{
+        const rdl=r.daysLeft===999?'—':r.daysLeft<=0?'마감':`D-${r.daysLeft}`;
+        const rp=r.minBidPrice?`${(r.minBidPrice/10000).toLocaleString()}만`:'—';
+        return `<option value="${i}">${r.round}회차 · ${r.endDateStr||'—'} · ${rdl} · ${rp}</option>`;
+      }).join('')}
+    </select>
+  </div>`:'';
+
+  return `<div class="item-card ${cls}" data-id="${item.id}">
   <div class="item-header">
     <div class="item-badges">
-      <span class="badge badge-type">${item.type}</span>
+      <span class="badge badge-type">${item.type||'—'}</span>
       ${watch?'<span class="badge badge-watch">⭐ 관심지번</span>':''}
+      ${item._emd?`<span class="badge badge-emd">${item._emd}</span>`:''}
       ${item.isNew?`<span class="badge badge-new">신규 ${item.changedAt||''}</span>`:''}
       ${item.priceChanged?`<span class="badge badge-price">가격변경 ${item.changedAt||''}</span>`:''}
       ${item.deadlineSoon?`<span class="badge badge-soon">마감임박 ${item.changedAt||''}</span>`:''}
       ${item.failCnt>0?`<span class="badge" style="background:rgba(124,92,252,.15);color:var(--accent2);">${item.failCnt}회유찰</span>`:''}
-      <span class="badge badge-org">${item.org.length>12?item.org.slice(0,12)+'…':item.org}</span>
+      ${item.roundCount>1?`<span class="badge" style="background:rgba(79,127,255,.12);color:var(--accent);">${item.roundCount}회차</span>`:''}
+      <span class="badge badge-org">${(item.org||'').length>12?item.org.slice(0,12)+'…':(item.org||'—')}</span>
     </div>
     <div class="item-title">${titleHtml}</div>
   </div>
   <div class="item-body">
     <div class="item-meta">
       <div class="meta-item"><span class="meta-key">감정가</span><span class="meta-val price">${price}</span>${item.priceChanged?`<span class="price-change">↓ ${prev}</span>`:''}</div>
-      <div class="meta-item"><span class="meta-key">마감</span><span class="meta-val deadline ${dlCls}">${dl}</span></div>
-      <div class="meta-item"><span class="meta-key">최저입찰가</span><span class="meta-val" style="color:var(--success);">${minPrice||price}${discountRate>0?` <span style="font-size:11px;color:var(--warn);">-${discountRate}%</span>`:''}</span></div>
+      <div class="meta-item"><span class="meta-key">마감</span><span class="meta-val deadline ${dlCls}" data-f="deadline">${dl}</span></div>
+      <div class="meta-item"><span class="meta-key">최저입찰가</span><span class="meta-val" data-f="minbid" style="color:var(--success);">${minPrice||price}${dr>0?` <span style="font-size:11px;color:var(--warn);">-${dr}%</span>`:''}</span></div>
       <div class="meta-item"><span class="meta-key">면적</span><span class="meta-val">${item.area?item.area+'㎡':'—'}</span></div>
     </div>
   </div>
+  ${roundHtml}
   <div class="item-footer">
-    <span class="item-date">${item.changedAt?`📅 ${item.changedAt}`:'공고 '+item.id}</span>
+    <span class="item-date" data-f="period">${item.startDateStr&&item.endDateStr?`📅 ${item.startDateStr} ~ ${item.endDateStr}`:(item.changedAt?`📅 ${item.changedAt}`:'공고 '+item.id)}</span>
     <div class="footer-btns">
       <button class="item-link" onclick="openItemInfo('${item.id}','detail')">공고 보기 📋</button>
       <span class="footer-divider">|</span>
       <button class="item-link result-link" onclick="openItemInfo('${item.id}','result')">결과 조회 🏆</button>
       <span class="footer-divider">|</span>
-      <button class="item-link bid-link" onclick="openBidModal_('${item.id}','${detailUrl}')">입찰 ✍️</button>
+      <button class="item-link bid-link" onclick="openBidModal_('${item.id}')">입찰 ✍️</button>
     </div>
   </div>
 </div>`;
 }
 
+// ══ 회차 전환 — 카드 내부만 갱신 [믹스: 실시간 가벼운 연산] ══
+function changeRound(itemId, idx, sel){
+  const item=itemIndex[itemId];
+  if(!item||!Array.isArray(item.rounds)) return;
+  const r=item.rounds[+idx];
+  if(!r) return;
+  const card=sel.closest('.item-card');
+  if(!card) return;
+
+  const d=parseItemDate(r.endDateStr);
+  const days=d?Math.ceil((d-new Date())/86400000):999;
+  const dl=days===999?'—':days<=0?'마감':`D-${days}`;
+
+  const dEl=card.querySelector('[data-f="deadline"]');
+  if(dEl){ dEl.textContent=dl; dEl.classList.toggle('soon',days<=3); }
+
+  const mEl=card.querySelector('[data-f="minbid"]');
+  if(mEl){
+    const mp=r.minBidPrice?`${(r.minBidPrice/10000).toLocaleString()}만원`:'—';
+    const dr=item.price&&r.minBidPrice&&item.price!==r.minBidPrice?Math.round((1-r.minBidPrice/item.price)*100):0;
+    mEl.innerHTML=`${mp}${dr>0?` <span style="font-size:11px;color:var(--warn);">-${dr}%</span>`:''}`;
+  }
+
+  const pEl=card.querySelector('[data-f="period"]');
+  if(pEl) pEl.textContent=`📅 ${r.startDateStr||'—'} ~ ${r.endDateStr||'—'}`;
+
+  item._selRound=+idx;
+}
+
 function emptyHtml(msg){return `<div class="empty-state"><div class="empty-icon">🔍</div><div class="empty-title">현재 공고 없음</div><div class="empty-desc">${msg}</div></div>`;}
-function hl(text,q){return text.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>`<span class="search-highlight">${m}</span>`);}
+function hl(text,q){
+  if(!q) return text;
+  try{ return text.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>`<span class="search-highlight">${m}</span>`); }
+  catch(e){ return text; }
+}
 
 // ══ 공고/결과 모달 ════════════════════════════════════════
-async function openItemInfo(itemId, mode) {
+async function openItemInfo(itemId, mode){
   const item=itemIndex[itemId];
-  if(!item)return;
-  const detailUrl=`https://www.onbid.co.kr/op/cltrpbancinf/cltr/cltrcdtnsrch/CltrCdtnSrchController/mvmnCltrCdtnSrchClg.do?srchCltrMnmtNo=${item.id}&searchCltrMnmtNoYn=Y`;
-  const isResult = mode==='result';
+  if(!item) return;
+  const detailUrl=`https://www.onbid.co.kr/op/cltrpbancinf/pbanc/pbancdtlinf/PbancDtlInqController/mvmnPbancDtl.do?onbidCltrno=${item.onbidCltrno||item.id}&onbidPbancNo=${item.pbancNo||''}`;
+  const isResult=mode==='result';
+
   document.getElementById('infoModalBadges').innerHTML = isResult
-    ? `<span class="badge" style="background:rgba(124,92,252,.15);color:var(--accent2);">입찰결과</span><span class="badge badge-org">${item.org.length>15?item.org.slice(0,15)+'…':item.org}</span>`
-    : `<span class="badge badge-type">${item.type}</span><span class="badge badge-org">${item.org.length>15?item.org.slice(0,15)+'…':item.org}</span>`;
-  document.getElementById('infoModalTitle').textContent=item.title;
+    ? `<span class="badge" style="background:rgba(124,92,252,.15);color:var(--accent2);">입찰결과</span><span class="badge badge-org">${(item.org||'').slice(0,15)}</span>`
+    : `<span class="badge badge-type">${item.type||'—'}</span><span class="badge badge-org">${(item.org||'').slice(0,15)}</span>`;
+  document.getElementById('infoModalTitle').textContent=item.title||'';
   document.getElementById('infoLoading').style.display='block';
+  document.getElementById('infoLoadingText').textContent='정보 불러오는 중...';
   document.getElementById('infoContent').style.display='none';
   document.getElementById('infoWarning').style.display='none';
+  document.getElementById('infoExtraSlot').innerHTML='';
   document.getElementById('infoViewBtn').onclick=()=>window.open(detailUrl,'_blank');
   document.getElementById('infoModal').style.display='flex';
   document.body.style.overflow='hidden';
 
-  try {
+  try{
     if(isResult) await loadResultInfo(item);
     else await loadDetailInfo(item);
-  } catch(e) {
+  }catch(e){
     document.getElementById('infoLoadingText').textContent='정보를 가져오지 못했습니다';
   }
 }
 
-async function loadDetailInfo(item) {
+async function loadDetailInfo(item){
   const price=item.price?`${(item.price/10000).toLocaleString()}만원`:'—';
   const minPrice=item.minBidPrice?`${(item.minBidPrice/10000).toLocaleString()}만원`:price;
-  const dl=item.daysLeft===999?'—':item.daysLeft<=0?'마감':`D-${item.daysLeft} (${item.endDateStr})`;
-  const discountRate=item.price&&item.minBidPrice&&item.price!==item.minBidPrice?Math.round((1-item.minBidPrice/item.price)*100):0;
+  const dl=item.daysLeft===999?'—':item.daysLeft<=0?'마감':`D-${item.daysLeft} (${item.endDateStr||''})`;
+  const dr=item.price&&item.minBidPrice&&item.price!==item.minBidPrice?Math.round((1-item.minBidPrice/item.price)*100):0;
   const urgency=item.daysLeft<=0?'⛔ 마감됨':item.daysLeft<=1?'🔴 오늘 마감! 즉시 확인하세요':item.daysLeft<=3?`🟡 D-${item.daysLeft} 서두르세요`:`🟢 D-${item.daysLeft} 여유 있음`;
 
-  // 온비드 스크래핑 + 토지 통합 정보 병렬 조회
-  const jibunAddr = item.jibun || item.title || '';
+  const jibunAddr=item.jibun||item.title||'';
+
+  // [레이어드] 병렬 조회 — 한쪽 실패해도 나머지는 그림
   const [onbidR, landR] = await Promise.allSettled([
-    item.onbidCltrno
-      ? fetch(`${SERVER_URL}/api/onbid-scrape?onbidCltrno=${item.onbidCltrno}&onbidPbancNo=${item.pbancNo||''}&pbctNo=${item.pbctNo||''}&pbctCdtnNo=${item.pbctCdtnNo||''}`).then(r=>r.ok?r.json():null).catch(()=>null)
+    item.pbctCdtnNo
+      ? L2fetch(`/api/detail?cltrMngNo=${item.id}&pbctCdtnNo=${item.pbctCdtnNo}`,{retry:0})
       : Promise.resolve(null),
-    jibunAddr ? fetchLandInfoDirect(jibunAddr, item.pnu||'') : Promise.resolve(null)
+    jibunAddr
+      ? L2fetch(`/api/landinfo?addr=${encodeURIComponent(jibunAddr)}&pnu=${item.pnu||''}`,{retry:0})
+      : Promise.resolve(null)
   ]);
 
-  const scrapeData = onbidR.status==='fulfilled' ? onbidR.value : null;
+  // let 사용 — const 재할당 버그 수정
+  let apiData = onbidR.status==='fulfilled'
+    ? (onbidR.value?.response?.body?.items?.item ?? onbidR.value?.body?.items?.item ?? null)
+    : null;
+  if(Array.isArray(apiData)) apiData = apiData[0];
+
   const L = landR.status==='fulfilled' ? landR.value : null;
 
-  const jibun = scrapeData?.title || item.jibun || '—';
+  const jibun = apiData?.rdnmAdr || apiData?.jibunAdr || item.jibun || '—';
   const roadAddr = L?.roadAddr || '—';
-  const area = L?.land?.area || item.area || '—';
-  const jimok = L?.land?.jimok || '—';
-  const ownership = L?.land?.ownership || '—';
-  const ownerCount = L?.land?.ownerCount || '—';
-  const useArea = L?.landuse?.useArea || '—';
-  const useDetail = L?.landuse?.useDetail || '';
-  const bidMethod = item.bidMthdNm || '공개경쟁입찰';
+  const area = apiData?.totArea || item.area || '—';
+  const jimok = item.prptDivNm || '—';
+  const bidMethod = apiData?.bidMthdNm || item.bidMthdNm || '공개경쟁입찰';
   const failNote = item.failCnt>0?`${item.failCnt}회 유찰 — 경쟁 낮을 수 있음`:'최초 입찰';
-  
-  // 스크래핑 데이터로 가격/날짜 보완
-  const scrapedPrice = scrapeData?.apslEvlAmt ? parseInt(scrapeData.apslEvlAmt.replace(/,/g,'')) : null;
-  const scrapedMinPrice = scrapeData?.lowstBidPrc ? parseInt(scrapeData.lowstBidPrc.replace(/,/g,'')) : null;
-  const scrapedBidStatus = scrapeData?.bidStatus || '';
-  const scrapedBidBgng = scrapeData?.bidBgng || '';
-  const scrapedBidEnd = scrapeData?.bidEnd || '';
-
-  // 공시지가 최근 3개년
-  let priceRows = '';
-  if(L?.price?.length) {
-    priceRows = L.price.map(p=>`${p.year}년: ㎡당 ${Number(p.price).toLocaleString()}원`).join(' / ');
-  }
-
-  // 메타 정보 - 스크래핑 데이터 우선 사용
-  const displayPrice = scrapedPrice ? `${(scrapedPrice/10000).toLocaleString()}만원` : price;
-  const displayMinPrice = scrapedMinPrice ? `${(scrapedMinPrice/10000).toLocaleString()}만원` : minPrice;
-  const displayBidPeriod = scrapedBidBgng && scrapedBidEnd ? `${scrapedBidBgng} ~ ${scrapedBidEnd}` : dl;
-  const displayStatus = scrapedBidStatus || (item.daysLeft<=0?'마감':item.daysLeft===999?'—':`D-${item.daysLeft}`);
 
   const rows=[
-    ['입찰 상태', `<span style="font-weight:700;">${displayStatus}</span>`],
-    ['감정가', `<span style="color:var(--accent);font-weight:700;">${displayPrice}</span>`],
-    ['최저입찰가', `<span style="color:var(--success);font-weight:700;">${displayMinPrice}</span>${discountRate>0?` <span style="font-size:11px;color:var(--warn);">감정가 대비 ${discountRate}% 낮음</span>`:''}` ],
-    ['입찰 기간', `<span style="font-weight:700;">${displayBidPeriod}</span>`],
+    ['긴박도', urgency],
+    ['감정가', `<span style="color:var(--accent);font-weight:700;">${price}</span>`],
+    ['최저입찰가', `<span style="color:var(--success);font-weight:700;">${minPrice}</span>${dr>0?` <span style="font-size:11px;color:var(--warn);">감정가 대비 ${dr}% 낮음</span>`:''}`],
+    ['입찰 마감', `<span style="${item.daysLeft<=3?'color:var(--danger)':'color:var(--text)'};font-weight:700;">${dl}</span>`],
     ['입찰 방식', bidMethod],
     ['유찰 현황', failNote],
   ];
-  if(item.priceChanged&&item.prevPrice){const diff=Math.round((item.price-item.prevPrice)/item.prevPrice*100);rows.splice(2,0,['가격 변동',`<span style="color:var(--warn);">${(item.prevPrice/10000).toLocaleString()}만 → ${displayPrice} (${diff>0?'+':''}${diff}%)</span>`]);}
+  if(item.roundCount>1) rows.push(['진행 회차', `${item.roundCount}회차 등록됨`]);
+  if(item.priceChanged&&item.prevPrice){
+    const diff=Math.round((item.price-item.prevPrice)/item.prevPrice*100);
+    rows.splice(2,0,['가격 변동',`<span style="color:var(--warn);">${(item.prevPrice/10000).toLocaleString()}만 → ${price} (${diff>0?'+':''}${diff}%)</span>`]);
+  }
 
-  // 토지대장/임야대장 섹션
-  const landSection = `
+  const landSection=`
     <div style="margin:0 18px 12px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);overflow:hidden;">
-      <div style="padding:10px 14px;background:rgba(79,127,255,.08);border-bottom:1px solid var(--border);font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.04em;">
-        📋 ${jimok==='임야'||jimok==='산림'?'임야대장':'토지대장'}
-      </div>
+      <div style="padding:10px 14px;background:rgba(79,127,255,.08);border-bottom:1px solid var(--border);font-size:12px;font-weight:700;color:var(--accent);">📋 ${jimok==='임야'?'임야 정보':'토지 정보'}</div>
       <div style="padding:4px 0;">
         ${[
           ['지번 주소', jibun],
           ['도로명 주소', roadAddr],
           ['지목', jimok],
-          ['면적', area&&area!=='—'?`${Number(area).toLocaleString()}㎡`:'—'],
-          ['소유 구분', ownership],
-          ['공유자 수', ownerCount&&ownerCount!=='—'?`${ownerCount}명`:'—'],
+          ['면적', area&&area!=='—'?`${Number(String(area).replace(/[^0-9.]/g,''))||area}㎡`:'—'],
         ].map(([k,v])=>`<div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid rgba(46,53,88,.5);font-size:13px;"><span style="color:var(--text3);">${k}</span><span style="font-weight:600;text-align:right;flex:1;margin-left:12px;">${v||'—'}</span></div>`).join('')}
       </div>
     </div>`;
 
-  // 토지이용계획 섹션
-  const landuseSection = useArea&&useArea!=='—' ? `
+  const mapTarget = roadAddr!=='—' ? roadAddr : jibun;
+  const mapSection = (mapTarget&&mapTarget!=='—') ? `
     <div style="margin:0 18px 12px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);overflow:hidden;">
-      <div style="padding:10px 14px;background:rgba(124,92,252,.08);border-bottom:1px solid var(--border);font-size:12px;font-weight:700;color:var(--accent2);letter-spacing:.04em;">🗺 토지이용계획</div>
-      <div style="padding:4px 0;">
-        ${[
-          ['용도지역', useArea],
-          ['세부 용도', useDetail||'—'],
-        ].map(([k,v])=>`<div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid rgba(46,53,88,.5);font-size:13px;"><span style="color:var(--text3);">${k}</span><span style="font-weight:600;text-align:right;flex:1;margin-left:12px;">${v}</span></div>`).join('')}
-      </div>
-    </div>` : '';
-
-  // 공시지가 섹션
-  const priceSection = priceRows ? `
-    <div style="margin:0 18px 12px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);overflow:hidden;">
-      <div style="padding:10px 14px;background:rgba(34,197,94,.08);border-bottom:1px solid var(--border);font-size:12px;font-weight:700;color:var(--success);letter-spacing:.04em;">💰 개별공시지가</div>
-      <div style="padding:8px 14px;font-size:13px;color:var(--text2);line-height:1.9;">${priceRows}</div>
-    </div>` : '';
-
-  // 지도 섹션
-  const mapSection = jibun&&jibun!=='—' ? `
-    <div style="margin:0 18px 12px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);overflow:hidden;">
-      <div style="padding:10px 14px;background:rgba(3,199,90,.08);border-bottom:1px solid var(--border);font-size:12px;font-weight:700;color:#03c75a;letter-spacing:.04em;">📍 위치</div>
+      <div style="padding:10px 14px;background:rgba(3,199,90,.08);border-bottom:1px solid var(--border);font-size:12px;font-weight:700;color:#03c75a;">📍 위치</div>
       <div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px;">
-        <div style="font-size:13px;color:var(--text2);">${roadAddr!=='—'?roadAddr:jibun}</div>
+        <div style="font-size:13px;color:var(--text2);">${mapTarget}</div>
         <div style="display:flex;gap:8px;">
-          <button onclick="window.open('https://map.naver.com/p/search/${encodeURIComponent(jibun)}','_blank')" style="flex:1;background:rgba(3,199,90,.15);border:1px solid rgba(3,199,90,.3);color:#03c75a;border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🗺 네이버 지도</button>
-          <button onclick="window.open('https://search.naver.com/search.naver?query=${encodeURIComponent(jibun)}','_blank')" style="flex:1;background:rgba(3,199,90,.1);border:1px solid rgba(3,199,90,.2);color:#03c75a;border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">📍 네이버 플레이스</button>
+          <button onclick="window.open('https://map.naver.com/p/search/${encodeURIComponent(mapTarget)}','_blank')" style="flex:1;background:rgba(3,199,90,.15);border:1px solid rgba(3,199,90,.3);color:#03c75a;border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🗺 네이버 지도</button>
+          <button onclick="window.open('https://map.kakao.com/?q=${encodeURIComponent(mapTarget)}','_blank')" style="flex:1;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.28);color:var(--warn);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🗺 카카오맵</button>
         </div>
-        <div style="display:flex;gap:8px;">
-          <button onclick="window.open('https://map.naver.com/p/search/${encodeURIComponent(jibun)}?c=15,0,0,0,dh','_blank')" style="flex:1;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:var(--warn);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🛰 위성사진</button>
-          <button onclick="window.open('https://www.eum.go.kr/web/mp/mpMapDet.jsp?pnu=${L?.pnu||item.pnu||''}','_blank')" style="flex:1;background:rgba(79,127,255,.1);border:1px solid rgba(79,127,255,.25);color:var(--accent);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">📋 토지이용계획</button>
-        </div>
-        <button onclick="window.open('https://map.naver.com/p/search/'+encodeURIComponent(roadAddr!=='—'?roadAddr:jibun)+'?c=15,0,0,0,dh&mode=streetview','_blank')" style="width:100%;background:rgba(139,147,176,.1);border:1px solid rgba(139,147,176,.25);color:var(--text2);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🚶 거리뷰</button>
+        <button onclick="window.open('https://www.eum.go.kr/web/ar/lu/luLandDet.jsp','_blank')" style="width:100%;background:rgba(79,127,255,.1);border:1px solid rgba(79,127,255,.25);color:var(--accent);border-radius:9px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">📋 토지이음에서 이용계획 확인</button>
       </div>
-    </div>` : '';
+    </div>`:'';
 
   const typeGuide={
     '압류재산':'세금 체납으로 압류된 재산입니다. 낙찰 후 명도 절차가 필요할 수 있으니 현장 확인을 권장합니다.',
@@ -818,326 +1159,343 @@ async function loadDetailInfo(item) {
     '기타':'공고 상세 페이지에서 조건을 직접 확인하세요.',
   };
 
-  // 모달 렌더링
-  document.getElementById('infoMeta').innerHTML = rows.map(([k,v])=>`<div class="summary-item"><span class="summary-key">${k}</span><span class="summary-val">${v}</span></div>`).join('');
-  document.getElementById('infoSummaryLabel').style.display='none';
-  document.getElementById('infoSummaryText').style.display='none';
-  document.getElementById('mapLabel').style.display='none';
-  document.getElementById('mapSection').style.display='none';
-
-  // 대장/이용계획/공시지가/지도를 body에 직접 삽입
-  const extraEl = document.getElementById('infoExtra');
-  if(extraEl) extraEl.remove();
-  const extra = document.createElement('div');
-  extra.id = 'infoExtra';
-  extra.innerHTML = landSection + landuseSection + priceSection + mapSection;
-  document.getElementById('infoContent').appendChild(extra);
-
-  // 유의사항
-  document.getElementById('infoSummaryLabel').style.display='block';
+  document.getElementById('infoMeta').innerHTML=rows.map(([k,v])=>`<div class="summary-item"><span class="summary-key">${k}</span><span class="summary-val">${v}</span></div>`).join('');
+  document.getElementById('infoExtraSlot').innerHTML = landSection + mapSection;
   document.getElementById('infoSummaryLabel').textContent='⚠️ 유의사항';
-  document.getElementById('infoSummaryText').style.display='block';
   document.getElementById('infoSummaryText').textContent=typeGuide[item.type]||typeGuide['기타'];
 
-  // 경고
   let warning='';
-  if(item.daysLeft<=1)warning=`입찰 마감이 ${item.daysLeft<=0?'이미 지났거나 오늘입니다':'내일입니다'}. 즉시 확인하세요.`;
-  else if(item.daysLeft<=3)warning=`입찰 마감 D-${item.daysLeft}. 서둘러 확인하세요.`;
-  else if(item.failCnt>0)warning=`${item.failCnt}회 유찰된 물건입니다. 경쟁이 낮을 수 있습니다.`;
-  else if(discountRate>=20)warning=`감정가 대비 ${discountRate}% 낮은 최저가입니다. 주목할 만한 물건입니다.`;
-  if(warning){document.getElementById('infoWarning').textContent='⚠️ '+warning;document.getElementById('infoWarning').style.display='block';}
+  if(item.daysLeft<=1) warning=`입찰 마감이 ${item.daysLeft<=0?'이미 지났거나 오늘입니다':'내일입니다'}. 즉시 확인하세요.`;
+  else if(item.daysLeft<=3) warning=`입찰 마감 D-${item.daysLeft}. 서둘러 확인하세요.`;
+  else if(item.failCnt>0) warning=`${item.failCnt}회 유찰된 물건입니다. 경쟁이 낮을 수 있습니다.`;
+  else if(dr>=20) warning=`감정가 대비 ${dr}% 낮은 최저가입니다. 주목할 만한 물건입니다.`;
+  if(warning){
+    document.getElementById('infoWarning').textContent='⚠️ '+warning;
+    document.getElementById('infoWarning').style.display='block';
+  }
 
   document.getElementById('infoLoading').style.display='none';
   document.getElementById('infoContent').style.display='block';
 }
 
-async function loadResultInfo(item) {
+async function loadResultInfo(item){
   const price=item.price?`${(item.price/10000).toLocaleString()}만원`:'—';
-  let resultData=null;
-  try {
-    const r=await fetch(`${SERVER_URL}/api/result?cltrMngNo=${item.id}&pbctCdtnNo=${item.pbctCdtnNo||''}`);
-    if(r.ok){const j=await r.json();resultData=j?.response?.body?.items?.item;if(Array.isArray(resultData))resultData=resultData[0];}
-  } catch(e){}
+  const j=await L2fetch(`/api/result?cltrMngNo=${item.id}&pbctCdtnNo=${item.pbctCdtnNo||''}`,{retry:0});
+  let rd = j?.response?.body?.items?.item ?? j?.body?.items?.item ?? null;
+  if(Array.isArray(rd)) rd=rd[0];
 
   document.getElementById('infoSummaryLabel').textContent='🏆 입찰결과';
-  document.getElementById('mapLabel').style.display='none';
-  document.getElementById('mapSection').style.display='none';
-
   let rows=[], summary='', warning='';
-  if(resultData) {
-    const bidAmt=resultData.sucsBidAmt?`${(parseInt(resultData.sucsBidAmt)/10000).toLocaleString()}만원`:'—';
-    const result=resultData.bidRsltNm||'—';
-    const bidCnt=resultData.bidPrtcpCnt||'0';
-    const sucsDt=resultData.sucsDt?resultData.sucsDt.slice(0,10):'—';
-    const rate=resultData.sucsBidAmt&&item.price?Math.round(parseInt(resultData.sucsBidAmt)/item.price*100):0;
+
+  if(rd){
+    const bidAmt=rd.sucsBidAmt?`${(parseInt(rd.sucsBidAmt)/10000).toLocaleString()}만원`:'—';
+    const result=rd.bidRsltNm||'—';
+    const bidCnt=rd.bidPrtcpCnt||'0';
+    const sucsDt=rd.sucsDt?String(rd.sucsDt).slice(0,10):'—';
+    const rate=rd.sucsBidAmt&&item.price?Math.round(parseInt(rd.sucsBidAmt)/item.price*100):0;
     rows=[
       ['결과',`<span style="font-weight:700;color:${result.includes('낙찰')?'var(--success)':result.includes('유찰')?'var(--warn)':'var(--text)'};">${result}</span>`],
       ['낙찰가',`<span style="color:var(--accent);font-weight:700;">${bidAmt}</span>${rate>0?` <span style="font-size:11px;color:var(--text2);">(감정가의 ${rate}%)</span>`:''}`],
       ['감정가',price],['입찰 참가자',`${bidCnt}명`],['낙찰일',sucsDt],
     ];
-    summary=result.includes('낙찰')?`낙찰가 ${bidAmt}로 ${bidCnt}명 중 최고가 입찰자가 낙찰됐습니다.${rate>0?' 감정가 대비 '+rate+'% 수준입니다.':''}`:result.includes('유찰')?'입찰자가 없거나 최저가 미달로 유찰됐습니다. 다음 회차에 재도전 기회가 있을 수 있습니다.':`결과: ${result}`;
+    summary=result.includes('낙찰')
+      ?`낙찰가 ${bidAmt}로 ${bidCnt}명 중 최고가 입찰자가 낙찰됐습니다.${rate>0?' 감정가 대비 '+rate+'% 수준입니다.':''}`
+      :result.includes('유찰')
+      ?'입찰자가 없거나 최저가 미달로 유찰됐습니다. 다음 회차에 재도전 기회가 있을 수 있습니다.'
+      :`결과: ${result}`;
   } else {
     rows=[
       ['현재 상태',item.daysLeft>0?'입찰 진행 중':'결과 집계 중'],
       ['감정가',price],['입찰 마감',item.endDateStr||'—'],
       ['유찰 횟수',item.failCnt>0?`${item.failCnt}회`:'최초 입찰'],
     ];
-    summary=item.daysLeft>0?'아직 입찰이 진행 중입니다. 마감 후 결과를 다시 확인해주세요.':'결과 데이터를 불러오지 못했습니다. 온비드에서 직접 확인해주세요.';
-    if(item.daysLeft>0)warning=`입찰 마감까지 D-${item.daysLeft} 남았습니다. 지금 입찰하실 수 있습니다.`;
+    summary=item.daysLeft>0
+      ?'아직 입찰이 진행 중입니다. 마감 후 결과를 다시 확인해주세요.'
+      :'결과 데이터를 불러오지 못했습니다. 온비드에서 직접 확인해주세요.';
+    if(item.daysLeft>0) warning=`입찰 마감까지 D-${item.daysLeft} 남았습니다. 지금 입찰하실 수 있습니다.`;
   }
 
   document.getElementById('infoMeta').innerHTML=rows.map(([k,v])=>`<div class="summary-item"><span class="summary-key">${k}</span><span class="summary-val">${v}</span></div>`).join('');
   document.getElementById('infoSummaryText').textContent=summary;
-  if(warning){document.getElementById('infoWarning').textContent='💡 '+warning;document.getElementById('infoWarning').style.display='block';}
+  if(warning){
+    document.getElementById('infoWarning').textContent='💡 '+warning;
+    document.getElementById('infoWarning').style.display='block';
+  }
   document.getElementById('infoLoading').style.display='none';
   document.getElementById('infoContent').style.display='block';
 }
 
-function closeInfoModal(e) {
+function closeInfoModal(e){
   if(!e||e.target===document.getElementById('infoModal')){
     document.getElementById('infoModal').style.display='none';
     document.body.style.overflow='';
   }
 }
 
-
-// ══ VWORLD 직접 호출 ══════════════════════════════════
-async function fetchLandInfoDirect(addr, pnu) {
-  const KEY1 = VWORLD_KEY;
-  const KEY2 = '2AD4FAC3-DFCC-3907-877C-9DC542786C1A';
-  const VWORLD_NED = 'https://api.vworld.kr/ned/data';
-  let resolvedPnu = pnu;
-  let roadAddr = '';
-
-  try {
-    const r = await fetch(`https://api.vworld.kr/req/address?service=address&request=getcoord&crs=epsg:4326&address=${encodeURIComponent(addr)}&format=json&type=PARCEL&key=${KEY1}`);
-    const d = await r.json();
-    if (d?.response?.status === 'OK') {
-      if (!resolvedPnu) resolvedPnu = d.response.refined?.structure?.level4LC || '';
-    }
-  } catch(e) {}
-
-  try {
-    const r = await fetch(`https://api.vworld.kr/req/address?service=address&request=getcoord&crs=epsg:4326&address=${encodeURIComponent(addr)}&format=json&type=ROAD&key=${KEY1}`);
-    const d = await r.json();
-    if (d?.response?.status === 'OK') roadAddr = d.response.refined?.text || '';
-  } catch(e) {}
-
-  const result = { pnu: resolvedPnu, roadAddr, land: null, price: null, landuse: null };
-
-  if (resolvedPnu) {
-    const [landR, priceR, landuseR] = await Promise.allSettled([
-      fetch(`${VWORLD_NED}/ladfrlList?key=${KEY2}&pnu=${resolvedPnu}&format=json&numOfRows=1`),
-      fetch(`${VWORLD_NED}/indvdLandPriceAttr?key=${KEY1}&pnu=${resolvedPnu}&format=json&numOfRows=3`),
-      fetch(`${VWORLD_NED}/prsctrAttr?key=${KEY1}&pnu=${resolvedPnu}&format=json`)
-    ]);
-    if (landR.status === 'fulfilled') {
-      try {
-        const d = await landR.value.json();
-        const f = d?.result?.featureCollection?.features?.[0]?.properties;
-        if (f) result.land = { area: f.lndpclAr, jimok: f.lndcgrCodeNm, ownership: f.posesnSeCodeNm, ownerCount: f.cnrsPsnCo };
-      } catch(e) {}
-    }
-    if (priceR.status === 'fulfilled') {
-      try {
-        const d = await priceR.value.json();
-        const feats = d?.result?.featureCollection?.features;
-        if (feats?.length) result.price = feats.map(f => ({ year: f.properties?.stdrYear, month: f.properties?.stdrMt, price: f.properties?.pblntfPclnd })).filter(p => p.price).slice(0, 3);
-      } catch(e) {}
-    }
-    if (landuseR.status === 'fulfilled') {
-      try {
-        const d = await landuseR.value.json();
-        const f = d?.result?.featureCollection?.features?.[0]?.properties;
-        if (f) result.landuse = { useArea: f.prsctrNm, useDetail: f.prsctrNm2 || '' };
-      } catch(e) {}
-    }
-  }
-  return result;
-}
-
-// ══ 토지 정보 조회 ════════════════════════════════════════
-async function fetchLandInfo(pnu) {
-  try {
-    const r=await fetch(`${SERVER_URL}/api/land?pnu=${pnu}`);
-    if(!r.ok)return null;
-    const j=await r.json();
-    const item=j?.result?.featureCollection?.features?.[0]?.properties;
-    if(!item)return null;
-    return { area:item.lndpclAr, jimok:item.lndcgrCodeNm, ownership:item.posesnSeCodeNm };
-  } catch(e){return null;}
-}
-
-async function fetchPriceInfo(pnu) {
-  try {
-    const r=await fetch(`${SERVER_URL}/api/priceland?pnu=${pnu}`);
-    if(!r.ok)return null;
-    const j=await r.json();
-    const item=j?.result?.featureCollection?.features?.[0]?.properties;
-    return item?{price:item.pblntfPclnd, year:item.stdrYear}:null;
-  } catch(e){return null;}
-}
-
-async function openLandInfo(pnu, label) {
-  document.getElementById('infoModalBadges').innerHTML=`<span class="badge badge-type">토지 정보</span>`;
-  document.getElementById('infoModalTitle').textContent=label;
-  document.getElementById('infoLoading').style.display='block';
-  document.getElementById('infoLoadingText').textContent='토지 정보 조회 중...';
-  document.getElementById('infoContent').style.display='none';
+// ══ 관심 지번 토지 정보 (죽은 API 제거, 외부 링크 방식) ═══
+function openWatchLandInfo(){
+  const w=DATA.WATCH_PARCELS[0];
+  document.getElementById('infoModalBadges').innerHTML=`<span class="badge badge-watch">⭐ 관심 지번</span>`;
+  document.getElementById('infoModalTitle').textContent=w.label;
+  document.getElementById('infoLoading').style.display='none';
   document.getElementById('infoWarning').style.display='none';
-  document.getElementById('mapLabel').style.display='none';
-  document.getElementById('mapSection').style.display='none';
-  document.getElementById('infoViewBtn').onclick=()=>window.open(`https://www.nsdi.go.kr/`,'_blank');
+  document.getElementById('infoViewBtn').onclick=()=>window.open('https://www.eum.go.kr/','_blank');
+
+  const rows=[
+    ['지번', w.label],
+    ['PNU', w.pnu],
+    ['감시 상태', homeItems.some(isWatchItem)?'<span style="color:var(--success);">공매 진행 중</span>':'<span style="color:var(--text2);">공고 없음 — 감시 중</span>'],
+  ];
+  document.getElementById('infoMeta').innerHTML=rows.map(([k,v])=>`<div class="summary-item"><span class="summary-key">${k}</span><span class="summary-val">${v}</span></div>`).join('');
+
+  document.getElementById('infoExtraSlot').innerHTML=`
+    <div style="margin:12px 18px;display:flex;flex-direction:column;gap:8px;">
+      <button onclick="window.open('https://map.naver.com/p/search/${encodeURIComponent(w.label)}','_blank')" style="width:100%;background:rgba(3,199,90,.15);border:1px solid rgba(3,199,90,.3);color:#03c75a;border-radius:9px;padding:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🗺 네이버 지도에서 보기</button>
+      <button onclick="window.open('https://www.eum.go.kr/','_blank')" style="width:100%;background:rgba(79,127,255,.1);border:1px solid rgba(79,127,255,.25);color:var(--accent);border-radius:9px;padding:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">📋 토지이음 (토지이용계획)</button>
+      <button onclick="window.open('https://www.nsdi.go.kr/','_blank')" style="width:100%;background:rgba(124,92,252,.1);border:1px solid rgba(124,92,252,.25);color:var(--accent2);border-radius:9px;padding:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">🏛 국토정보플랫폼</button>
+    </div>`;
+
+  document.getElementById('infoSummaryLabel').textContent='📋 안내';
+  document.getElementById('infoSummaryText').textContent='이 지번에 공매 공고가 등록되면 즉시 ⭐ 특별 알림으로 알려드립니다.\n토지 상세 정보는 위 버튼으로 확인하실 수 있습니다.';
+  document.getElementById('infoContent').style.display='block';
   document.getElementById('infoModal').style.display='flex';
   document.body.style.overflow='hidden';
-
-  try {
-    const [land,price] = await Promise.all([fetchLandInfo(pnu), fetchPriceInfo(pnu)]);
-    const rows=[
-      ['지번', label],
-      ['지목', land?.jimok||'확인 필요'],
-      ['면적', land?.area?`${land.area}㎡`:'확인 필요'],
-      ['소유 구분', land?.ownership||'확인 필요'],
-      ['공시지가', price?.price?`㎡당 ${Number(price.price).toLocaleString()}원 (${price.year}년)`:'확인 필요'],
-    ];
-    document.getElementById('infoMeta').innerHTML=rows.map(([k,v])=>`<div class="summary-item"><span class="summary-key">${k}</span><span class="summary-val">${v}</span></div>`).join('');
-    document.getElementById('infoSummaryLabel').textContent='📋 토지 현황';
-    document.getElementById('infoSummaryText').textContent=`이 토지는 현재 공매 공고가 없습니다.\n공매 공고가 등록되면 즉시 ⭐ 특별 알림으로 알려드립니다.`;
-    document.getElementById('infoLoading').style.display='none';
-    document.getElementById('infoContent').style.display='block';
-  } catch(e) {
-    document.getElementById('infoLoadingText').textContent='토지 정보를 가져오지 못했습니다';
-  }
-}
-
-function getPNUFromJibun(jibun) {
-  // 길안면 지번 → PNU 추정 (실제로는 서버 API /api/pnu 사용)
-  if(!jibun)return null;
-  // 송사리 584 특수 처리
-  if(jibun.includes('송사리')&&jibun.includes('584'))return '4773032027100580000';
-  return null;
 }
 
 // ══ 입찰 모달 ═════════════════════════════════════════════
-function openBidModal_(itemId, detailUrl) {
+function openBidModal_(itemId){
   const item=itemIndex[itemId];
   pendingBidUrl='https://www.onbid.co.kr/op/mba/loginmn/simpleLogin.do';
-  if(item)document.getElementById('bidModalSub').textContent=item.title.length>35?item.title.slice(0,35)+'…':item.title;
+  if(item) document.getElementById('bidModalSub').textContent=(item.title||'').length>35?item.title.slice(0,35)+'…':(item.title||'');
   document.getElementById('bidModal').style.display='flex';
   document.body.style.overflow='hidden';
 }
-function closeBidModal(e){if(!e||e.target===document.getElementById('bidModal')){document.getElementById('bidModal').style.display='none';document.body.style.overflow='';pendingBidUrl='';}}
-function goToBid(){window.open(pendingBidUrl,'_blank');closeBidModal();}
+function closeBidModal(e){
+  if(!e||e.target===document.getElementById('bidModal')){
+    document.getElementById('bidModal').style.display='none';
+    document.body.style.overflow=''; pendingBidUrl='';
+  }
+}
+function goToBid(){ window.open(pendingBidUrl,'_blank'); closeBidModal(); }
 
 // ══ Browser Push ══════════════════════════════════════════
-function sendBrowserPush({type,item}) {
-  if(!notifyEnabled||Notification.permission!=='granted')return;
-  const isWatch=type.startsWith('watch');
+function sendBrowserPush(n){
+  if(!notifyEnabled||!('Notification' in window)||Notification.permission!=='granted') return;
+  const {type,item}=n;
   const price=item.price?`${(item.price/10000).toLocaleString()}만원`:'—';
   const dl=item.daysLeft===999?'—':item.daysLeft<=0?'마감':`D-${item.daysLeft}`;
   const titles={watch:'⭐ 관심 지번 공매 등록!',watch_price:'⭐ 관심 지번 가격 변경',watch_deadline:`⭐ 관심 지번 마감 임박 ${dl}`,new:'🟢 새 공고 등록',price:'🟡 감정가 변경',deadline:`🔴 마감 임박 ${dl}`};
-  const t=titles[type]||'알림';
-  const n=new Notification(t,{body:`${item.title}\n감정가 ${price}`,tag:item.id+'-'+type,renotify:true});
-  n.onclick=()=>{window.focus();openItemInfo(item.id,'detail');};
+  try{
+    const nt=new Notification(titles[type]||'알림',{body:`${item.title}\n감정가 ${price}`,tag:item.id+'-'+type});
+    nt.onclick=()=>{ window.focus(); openItemInfo(item.id,'detail'); };
+  }catch(e){}
 }
 
-// ══ FCM 초기화 ════════════════════════════════════════════
-const FIREBASE_CONFIG={apiKey:"AIzaSyAMQp0hYqy-jeUfDdcRTDiSIbB0HgmehUo",authDomain:"geuddang-monitor.firebaseapp.com",projectId:"geuddang-monitor",storageBucket:"geuddang-monitor.firebasestorage.app",messagingSenderId:"248172557002",appId:"1:248172557002:web:b6c159a3eae5ecae43fa33"};
-const VAPID_KEY="BA424su0CcYuy4MnmEKbT4WoYyTv7Nu9W685xIakrot7FK-USNY-Kreye6S98vMHWq24R1HW40zH4vDErjQ0pRo";
+// ══ [스위칭] 알림 엔진 — FCM / 브라우저 알림 교체 가능 ════
 let fcmToken=null;
-
-async function initFCM() {
-  try {
+async function initFCM(){
+  try{
     const {initializeApp}=await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js');
     const {getMessaging,getToken,onMessage}=await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-messaging.js');
-    const app=initializeApp(FIREBASE_CONFIG);
+    const app=initializeApp(DATA.FIREBASE);
     const messaging=getMessaging(app);
     const swReg=await navigator.serviceWorker.register('./firebase-messaging-sw.js');
-    fcmToken=await getToken(messaging,{vapidKey:VAPID_KEY,serviceWorkerRegistration:swReg});
+    await navigator.serviceWorker.ready;
+    fcmToken=await getToken(messaging,{vapidKey:DATA.VAPID,serviceWorkerRegistration:swReg});
     if(fcmToken){
-      await fetch(SERVER_URL+'/register-token',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:fcmToken})}).catch(()=>{});
-      localStorage.setItem('fcm_token',fcmToken);
+      L0.set('fcmToken',fcmToken);
+      await fetch(DATA.SERVER+'/register-token',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({token:fcmToken})
+      }).catch(()=>{});
     }
     onMessage(messaging,payload=>{
-      const {title,body}=payload.notification||{};
-      const isWatch=(payload.data?.isWatch==='true')||false;
-      showToast(`${title} — ${body}`,isWatch?'watch':'success');
+      const n=payload.notification||{};
+      const isWatch=(payload.data&&payload.data.isWatch)==='true';
+      showToast(`${n.title||'알림'} — ${n.body||''}`,isWatch?'watch':'success');
     });
     return true;
-  } catch(e){console.warn('FCM 초기화 실패:',e.message);return false;}
+  }catch(e){ console.warn('FCM 초기화 실패:',e.message); return false; }
 }
 
-async function toggleNotification() {
+async function toggleNotification(){
   if(notifyEnabled){
     notifyEnabled=false;
+    L0.set('notify',false);
     document.getElementById('notifyBtn').textContent='🔔 알림 허용';
     document.getElementById('notifyBtn').classList.remove('active');
-    showToast('알림을 껐습니다','warn');return;
+    showToast('알림을 껐습니다','warn');
+    return;
   }
-  if(!('Notification' in window)){showToast('이 브라우저는 알림 미지원','error');return;}
+  if(!('Notification' in window)){ showToast('이 브라우저는 알림 미지원','error'); return; }
   const p=await Notification.requestPermission();
   if(p==='granted'){
     notifyEnabled=true;
+    L0.set('notify',true);
     document.getElementById('notifyBtn').textContent='🔔 알림 ON';
     document.getElementById('notifyBtn').classList.add('active');
-    const fcmOk=await initFCM();
-    if(fcmOk)showToast('✅ 앱 푸시 알림 설정 완료 — 폰 꺼져도 알림 옵니다','success');
-    else showToast('✅ 알림 설정 완료 (브라우저 알림)','success');
+    const ok=await initFCM();
+    showToast(ok?'✅ 앱 푸시 알림 설정 완료 — 폰 꺼져도 알림 옵니다':'✅ 알림 설정 완료 (브라우저 알림)','success');
   } else showToast('알림 권한 거부 — 브라우저 설정에서 허용해주세요','error');
 }
 
-// ══ Filters ═══════════════════════════════════════════════
-function filterHomeType(t){homeType=t;document.querySelectorAll('#homeTypeFilter .filter-chip').forEach(b=>b.classList.toggle('active',b.dataset.type===t));renderHomeList();}
-function filterHomeAlert(a){homeAlert=a;document.querySelectorAll('#homeAlertFilter .filter-chip').forEach(b=>b.classList.toggle('active',b.dataset.alert===a));renderHomeList();}
-function onHomeSearch(){homeQ=document.getElementById('homeAddrSearch').value.trim();document.getElementById('homeClear').classList.toggle('visible',homeQ.length>0);renderHomeList();}
-function clearHomeSearch(){document.getElementById('homeAddrSearch').value='';homeQ='';document.getElementById('homeClear').classList.remove('visible');renderHomeList();}
-function filterOtherType(t){otherType=t;document.querySelectorAll('#otherTypeFilter .filter-chip').forEach(b=>b.classList.toggle('active',b.dataset.type===t));renderOtherList();}
+// ══ 시스템 알림 확인 (읍면동 누락 등) ═════════════════════
+async function checkEmdAlerts(){
+  const logs=await L2fetch('/api/emd-alerts',{retry:0,timeout:8000});
+  if(!Array.isArray(logs)||!logs.length) return;
 
-// ══ Auto interval ═════════════════════════════════════════
-function setAutoInterval(){if(autoTimer)clearInterval(autoTimer);const mins=parseInt(document.getElementById('intervalSelect').value);autoTimer=setInterval(()=>fetchHomeData(true),mins*60*1000);showToast(`⏱ ${mins}분마다 자동 감지`,'success');}
-function onRefreshClick(){if(currentTab==='home')fetchHomeData(false,true);else if(currentTab==='watch')fetchHomeData(false,true);else{const s=document.getElementById('rSido').value.trim(),g=document.getElementById('rGugun').value.trim(),d=document.getElementById('rDong').value.trim();(s||g||d)?searchOtherRegion():showToast('지역을 먼저 입력해주세요','warn');}}
+  const seen=L0.get('emdAlertSeen','');
+  const fresh=logs.filter(l=>l.at>seen);
+  if(!fresh.length) return;
+
+  const areas=[...new Set(fresh.flatMap(l=>(l.items||[]).map(i=>`${l.sgg} ${i.name}`)))];
+  alert(
+    '알림\n\n'+
+    `${areas.join(', ')} 지역 정보가 최근 조회되지 않고 있습니다.\n\n`+
+    '검색은 평소대로 계속되고 있으니 그대로 사용하시면 됩니다.\n'+
+    '이 화면이 보이면 아들(동윤)에게 알려주세요.'
+  );
+  L0.set('emdAlertSeen',logs[0].at);
+}
+
+// ══ Filters [믹스: 실시간 가벼운 연산] ════════════════════
+function filterHomeType(t){ homeType=t; document.querySelectorAll('#homeTypeFilter .filter-chip').forEach(b=>b.classList.toggle('active',b.dataset.type===t)); renderHomeList(); }
+function filterHomeAlert(a){ homeAlert=a; document.querySelectorAll('#homeAlertFilter .filter-chip').forEach(b=>b.classList.toggle('active',b.dataset.alert===a)); renderHomeList(); }
+function onHomeSearch(){ homeQ=document.getElementById('homeAddrSearch').value.trim(); document.getElementById('homeClear').classList.toggle('visible',homeQ.length>0); renderHomeList(); }
+function clearHomeSearch(){ document.getElementById('homeAddrSearch').value=''; homeQ=''; document.getElementById('homeClear').classList.remove('visible'); renderHomeList(); }
+function filterOtherType(t){ otherType=t; document.querySelectorAll('#otherTypeFilter .filter-chip').forEach(b=>b.classList.toggle('active',b.dataset.type===t)); renderOtherList(); }
+
+// ══ [반복] 자동 감지 주기 ═════════════════════════════════
+function setAutoInterval(){
+  if(autoTimer) clearInterval(autoTimer);
+  const mins=parseInt(document.getElementById('intervalSelect').value);
+  L0.set('interval',mins);
+  autoTimer=setInterval(()=>fetchHomeData(true),mins*60*1000);
+  showToast(`⏱ ${mins}분마다 자동 감지`,'success');
+}
+function onRefreshClick(){
+  if(currentTab==='other'){
+    const s=document.getElementById('rSido').value.trim();
+    const g=document.getElementById('rGugun').value.trim();
+    if(s&&g) searchOtherRegion();
+    else showToast('지역을 먼저 입력해주세요','warn');
+  } else fetchHomeData(false,true);
+}
 
 // ══ UI helpers ════════════════════════════════════════════
-function setStatus(s,t){document.getElementById('crawlDot').className='status-dot '+(s==='running'?'running':s==='error'?'error':'');document.getElementById('statusText').textContent=t;}
-function updateLastCheck(){const n=new Date();document.getElementById('lastCheck').textContent=`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')} 확인`;}
-function showLoading(t){document.getElementById('loadingText').textContent=t;document.getElementById('loadingOverlay').style.display='flex';}
-function hideLoading(){document.getElementById('loadingOverlay').style.display='none';}
-function showToast(msg,type=''){const c=document.getElementById('toastContainer'),t=document.createElement('div');t.className=`toast ${type}`;t.textContent=msg;c.appendChild(t);setTimeout(()=>t.remove(),3800);}
+function setStatus(s,t){
+  const dot=document.getElementById('crawlDot');
+  dot.className='status-dot '+(s==='running'?'running':s==='error'?'error':s==='offline'?'offline':'');
+  document.getElementById('statusText').textContent=t;
+}
+function updateLastCheck(){
+  const n=new Date();
+  document.getElementById('lastCheck').textContent=`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')} 확인`;
+}
+function showLoading(t){ document.getElementById('loadingText').textContent=t; document.getElementById('loadingOverlay').style.display='flex'; }
+function hideLoading(){ document.getElementById('loadingOverlay').style.display='none'; }
+function showToast(msg,type=''){
+  const c=document.getElementById('toastContainer'), t=document.createElement('div');
+  t.className='toast '+type; t.textContent=msg;
+  c.appendChild(t); setTimeout(()=>t.remove(),3800);
+}
+function updateOfflineBar(){
+  const off=!navigator.onLine;
+  document.getElementById('offlineBar').classList.toggle('visible',off);
+  if(off) setStatus('offline','오프라인 — 저장본 표시');
+}
 
 // ══ PWA 설치 ══════════════════════════════════════════════
 let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{
-  e.preventDefault();deferredPrompt=e;
+  e.preventDefault(); deferredPrompt=e;
   if(!window.matchMedia('(display-mode: standalone)').matches){
     document.getElementById('installBanner').style.display='flex';
     document.querySelector('.header').style.marginTop='60px';
   }
 });
 document.getElementById('installBtn').addEventListener('click',async()=>{
-  if(!deferredPrompt)return;
+  if(!deferredPrompt) return;
   deferredPrompt.prompt();
-  const{outcome}=await deferredPrompt.userChoice;
+  const {outcome}=await deferredPrompt.userChoice;
   deferredPrompt=null;
   document.getElementById('installBanner').style.display='none';
   document.querySelector('.header').style.marginTop='';
-  if(outcome==='accepted')showToast('✅ 홈 화면에 추가됐습니다!','success');
+  if(outcome==='accepted') showToast('✅ 홈 화면에 추가됐습니다!','success');
 });
 const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
-const isSafari=/safari/i.test(navigator.userAgent)&&!/chrome/i.test(navigator.userAgent);
+const isSafari=/safari/i.test(navigator.userAgent)&&!/chrome|crios/i.test(navigator.userAgent);
 const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone;
-if(isIOS&&isSafari&&!isStandalone)setTimeout(()=>{document.getElementById('iosBanner').style.display='block';},3000);
+if(isIOS&&isSafari&&!isStandalone) setTimeout(()=>{document.getElementById('iosBanner').style.display='block';},3000);
 
+// ══ 이벤트 바인딩 ═════════════════════════════════════════
+function bindRegionEvents(){
+  const dong=document.getElementById('rDong');
+  if(!dong) return;
+  dong.addEventListener('focus',onDongFocus);
+  dong.addEventListener('click',onDongFocus);
+  dong.addEventListener('input',onDongInput);
+  dong.addEventListener('keydown',onDongKey);
+
+  ['rSido','rGugun'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    el.addEventListener('keydown',e=>{ if(e.key==='Enter') searchOtherRegion(); });
+    el.addEventListener('input',()=>{ emdOptions=[]; emdKey=''; });
+  });
+
+  // 바깥 클릭 시 닫기 — mousedown 사용(click은 focus와 순서가 겹침)
+  document.addEventListener('mousedown',e=>{
+    if(e.target.closest('#emdDrop')) return;
+    if(e.target.closest('.region-field')) return;
+    hideEmdDrop();
+  });
+}
+bindRegionEvents();
+
+window.addEventListener('online',()=>{ updateOfflineBar(); showToast('🌐 온라인 복귀 — 동기화합니다','success'); fetchHomeData(true); });
+window.addEventListener('offline',updateOfflineBar);
+
+// ══ 빌드 버전 표시 + SW 캐시 강제 갱신 ═════════════════════
+const BUILD='v2-20260718';
+console.log('[그 땅 내꺼] BUILD:',BUILD,'| L0:',typeof L0,'| onDongFocus:',typeof onDongFocus);
 if('serviceWorker' in navigator){
-  const swCode=`importScripts('https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js');importScripts('https://www.gstatic.com/firebasejs/10.7.0/firebase-messaging-compat.js');firebase.initializeApp({apiKey:"AIzaSyAMQp0hYqy-jeUfDdcRTDiSIbB0HgmehUo",authDomain:"geuddang-monitor.firebaseapp.com",projectId:"geuddang-monitor",storageBucket:"geuddang-monitor.firebasestorage.app",messagingSenderId:"248172557002",appId:"1:248172557002:web:b6c159a3eae5ecae43fa33"});const messaging=firebase.messaging();messaging.onBackgroundMessage(payload=>{const{title,body}=payload.notification||{};self.registration.showNotification(title||'그 땅 내꺼',{body:body||'새 알림',icon:'/icon-192.png',renotify:true,tag:payload.data?.itemId||'onbid'});});self.addEventListener('notificationclick',e=>{e.notification.close();e.waitUntil(clients.matchAll({type:'window',includeUncontrolled:true}).then(list=>{if(list.length>0)return list[0].focus();return clients.openWindow('/');})});`;
-  const swBlob=new Blob([swCode],{type:'text/javascript'});
-  navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(()=>{});
+  navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.update()));
 }
 
-// Enter key
-['rSido','rGugun','rDong'].forEach(id=>document.getElementById(id).addEventListener('keydown',e=>{if(e.key==='Enter')searchOtherRegion();}));
+// ══ Init [레이어드: 저장본 먼저 → 네트워크 나중] ══════════
+window.addEventListener('load',async()=>{
+  updateOfflineBar();
 
-// Init
-window.addEventListener('load',()=>{setAutoInterval();fetchHomeData(false);});
+  // L0 복원 — 마지막 상태부터 이어감
+  const st=STATE.load();
+  const iv=L0.get('interval');
+  if(iv) document.getElementById('intervalSelect').value=String(iv);
+  if(L0.get('notify')&&('Notification' in window)&&Notification.permission==='granted'){
+    notifyEnabled=true;
+    document.getElementById('notifyBtn').textContent='🔔 알림 ON';
+    document.getElementById('notifyBtn').classList.add('active');
+    initFCM();
+  }
+  if(st.lastSearch){
+    document.getElementById('rSido').value=st.lastSearch.sido||'';
+    document.getElementById('rGugun').value=st.lastSearch.gugun||'';
+    document.getElementById('rDong').value=st.lastSearch.dong||'';
+  }
+
+  const cached=L0.get('homeItems');
+  if(cached&&cached.length){
+    homeItems=recalcDays(cached);
+    homePrev=L0.get('homePrev',{});
+    homeItems.forEach(i=>itemIndex[i.id]=i);
+    renderHomeList(); updateWatchTab();
+    setStatus('running','저장본 표시 — 갱신 중');
+  }
+
+  setAutoInterval();
+  await fetchHomeData(!!(cached&&cached.length));
+  checkEmdAlerts();
+});
 </script>
 </body>
 </html>
